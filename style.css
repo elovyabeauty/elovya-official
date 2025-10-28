@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -8,9 +8,10 @@
 body, html {
   height: 100%;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
   overflow: hidden;
-  color: #fff;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background: black;
 }
 
 /* Video background */
@@ -20,8 +21,8 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -2;
   overflow: hidden;
-  z-index: -1;
 }
 
 #bg-video {
@@ -30,55 +31,43 @@ body, html {
   object-fit: cover;
 }
 
-/* Overlay for dim effect */
+/* Overlay for better text visibility */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
+  z-index: -1;
 }
 
-/* Main content */
+/* Centered text */
 .content {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 20px;
-}
-
-.logo {
-  max-width: 180px;
-  margin-bottom: 20px;
+  width: 90%;
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 2.4rem;
   letter-spacing: 2px;
-  text-transform: uppercase;
+  margin-bottom: 15px;
 }
 
 p {
   font-size: 1.1rem;
 }
 
-/* Responsive fixes */
+/* Responsive for smaller screens */
 @media (max-width: 768px) {
   h1 {
     font-size: 1.8rem;
   }
-
   p {
-    font-size: 1rem;
-  }
-
-  .logo {
-    max-width: 120px;
+    font-size: 0.95rem;
   }
 }
