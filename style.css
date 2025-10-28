@@ -1,97 +1,84 @@
-/* Reset and base setup */
+/* Reset and base styles */
 * {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-height: 100%;
-width: 100%;
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-background-color: #000;
-overflow: hidden;
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  color: #fff;
 }
 
-/* Main hero container */
-.hero {
-position: relative;
-height: 100vh;
-width: 100%;
-overflow: hidden;
+/* Video background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
 }
 
-/* Responsive full video */
-video {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 100%;
-height: 100%;
-object-fit: cover;
-z-index: -1;
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Overlay container for text */
+/* Overlay for dim effect */
 .overlay {
-position: absolute;
-top: 0;
-left: 0;
-height: 100%;
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-color: white;
-z-index: 2;
-padding: 0 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-/* Main text */
-.launch {
-font-size: 4vw;
-font-weight: 600;
-text-transform: uppercase;
-letter-spacing: 4px;
+/* Main content */
+.content {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
 }
 
-/* Sub text */
-.stay-tuned {
-font-size: 1.5vw;
-font-weight: 400;
-margin-top: 1rem;
-text-transform: uppercase;
-opacity: 0.9;
+.logo {
+  max-width: 180px;
+  margin-bottom: 20px;
 }
 
-/* --- Mobile Responsive Tweaks --- */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+/* Responsive fixes */
 @media (max-width: 768px) {
-video {
-object-fit: contain; /* keeps full video visible on portrait phones */
-background-color: #000;
-}
+  h1 {
+    font-size: 1.8rem;
+  }
 
-.launch {
-font-size: 7vw;
-letter-spacing: 2px;
-}
+  p {
+    font-size: 1rem;
+  }
 
-.stay-tuned {
-font-size: 3.5vw;
-margin-top: 0.5rem;
-}
-}
-
-/* --- Very small screens (e.g. iPhone SE) --- */
-@media (max-width: 480px) {
-.launch {
-font-size: 8vw;
-}
-
-.stay-tuned {
-font-size: 4vw;
-}
+  .logo {
+    max-width: 120px;
+  }
 }
