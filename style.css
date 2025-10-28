@@ -1,59 +1,90 @@
-* {
+/* Reset default margins */
+body, html {
 margin: 0;
 padding: 0;
-box-sizing: border-box;
-}
-
-body, html {
 height: 100%;
 width: 100%;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 overflow: hidden;
+background-color: #000;
 }
 
+/* Video background setup */
 .hero {
 position: relative;
 height: 100vh;
 width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
+overflow: hidden;
 }
 
 video {
-width: 100%;
-height: 100%;
-object-fit: cover;
-}
-
-/* Optional if you keep text later */
-.overlay {
 position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-color: white;
-text-align: center;
-font-size: 3rem;
-font-family: 'Poppins', sans-serif;
-font-weight: 600;
-letter-spacing: 2px;
-animation: fadeIn 2s ease-in;
+min-width: 100%;
+min-height: 100%;
+object-fit: cover;
+z-index: -1;
+filter: brightness(0.85);
+transition: opacity 0.8s ease-in-out;
 }
 
-/* Responsive text size */
-@media (max-width: 768px) {
+/* Overlay text */
 .overlay {
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: white;
+text-transform: uppercase;
+letter-spacing: 2px;
+z-index: 2;
+}
+
+/* Main text */
+.launch {
+font-size: 3rem;
+font-weight: 600;
+margin: 0;
+}
+
+/* Sub text */
+.stay-tuned {
+font-size: 1rem;
+font-weight: 400;
+margin-top: 10px;
+opacity: 0.8;
+}
+
+/* Fade effect at the bottom */
+.overlay::after {
+content: "";
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 150px;
+background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+z-index: -1;
+}
+
+/* --- Mobile Responsive Adjustments --- */
+@media (max-width: 768px) {
+.launch {
 font-size: 2rem;
 }
-}
-@media (max-width: 480px) {
-.overlay {
-font-size: 1.5rem;
-}
+
+.stay-tuned {
+font-size: 0.9rem;
 }
 
-/* Smooth fade-in animation */
-@keyframes fadeIn {
-from { opacity: 0; }
-to { opacity: 1; }
+video {
+object-fit: contain;
+}
 }
