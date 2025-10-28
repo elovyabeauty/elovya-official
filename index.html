@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elovya Beauty - Coming Soon</title>
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-      background-color: #000;
-    }
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      background-color: #000;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Elovya Beauty — Launching Soon. A new era of premium, long-lasting beauty begins.">
+<title>Elovya Beauty | Launching Soon</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <video id="bgVideo" autoplay muted loop playsinline>
-    <source src="launch.mp4" type="video/mp4">
-  </video>
 
-  <script>
-    // Mobile autoplay fix
-    document.addEventListener('touchstart', function () {
-      const video = document.getElementById('bgVideo');
-      if (video.paused) video.play();
-    }, { passive: true });
-  </script>
+<body>
+<div class="hero">
+<video autoplay muted loop playsinline>
+<source src="launch.mp4" type="video/mp4">
+<!-- Fallback image if video fails -->
+<img src="fallback.jpg" alt="Elovya Beauty Launching Soon">
+</video>
+
+<div class="overlay">
+<h1 class="brand">ELOVYA BEAUTY</h1>
+<h2 class="launch">LAUNCHING SOON</h2>
+<div class="divider"></div>
+</div>
+</div>
 </body>
 </html>
