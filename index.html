@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elovya Beauty - Coming Soon</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html {
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background: black;
-      color: white;
-    }
-    .video-background {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .video-background video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-    }
-    h1 {
-      font-size: 48px;
-      letter-spacing: 4px;
-    }
-    p {
-      margin-top: 10px;
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elovya Beauty | Launching Soon</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Background video -->
+  <video
+    id="bgVideo"
+    class="bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  >
+    <source src="videos/launch.mp4" type="video/mp4" />
+    <!-- fallback text -->
+  </video>
 
-  <div class="video-background">
-    <video autoplay loop muted playsinline>
-      <source src="videos/launch.mp4" type="video/mp4">
-    </video>
-  </div>
+  <!-- Main content -->
+  <main class="content" role="main">
+    <h1 class="brand">LAUNCHING SOON</h1>
+    <p class="sub">STAY TUNED</p>
+    <a class="btn" href="https://www.linkedin.com/company/elovyabeauty" target="_blank" rel="noopener noreferrer">
+      Follow us on LinkedIn
+    </a>
+  </main>
 
-  <div class="content">
-    <h1>LAUNCHING SOON</h1>
-    <p>STAY CONNECTED WITH US</p>
-  </div>
-
+  <!-- Small autoplay safety: try play if browser blocks initially -->
+  <script>
+    (function () {
+      const v = document.getElementById('bgVideo');
+      // Try programmatic play (some browsers require user gesture unless muted)
+      v.play().catch(() => {
+        // If still blocked, keep muted and try again (most mobiles allow muted autoplay)
+        v.muted = true;
+        v.play().catch(() => {
+          // if autoplay still blocked, do nothing — user can still see video and click play
+          // we avoid showing controls for a clean look
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
