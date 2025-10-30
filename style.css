@@ -1,76 +1,119 @@
-/* Simple reset */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* Page full height */
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background: #000; /* fallback while video loads */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
   color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+  overflow-x: hidden;
 }
 
-/* Fullscreen background video (covers viewport) */
-.bg-video {
-  position: fixed;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+.background-video {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
-  z-index: -1;
-  background: #000; /* fallback color */
-}
-
-/* Centered content */
-.content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.overlay {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
   text-align: center;
-  padding: 0 20px;
-  width: 100%;
-  max-width: 1000px;
 }
 
-/* Headline */
-.brand {
-  font-size: clamp(28px, 6vw, 48px); /* responsive sizing */
-  letter-spacing: 4px;
-  font-weight: 600;
-  margin-bottom: 8px;
+.overlay h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin: 10px 0;
 }
 
-/* Subtext */
-.sub {
-  font-size: clamp(12px, 2.2vw, 16px);
-  margin-bottom: 18px;
-  opacity: 0.95;
-}
-
-/* LinkedIn button */
-.btn {
-  display: inline-block;
-  padding: 12px 26px;
-  border-radius: 28px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #0077b5;
+.overlay p {
   font-size: 1rem;
-  transition: transform .12s ease, box-shadow .12s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-.btn:hover,
-.btn:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.32);
-  background-color: #005f8d;
+  margin-bottom: 20px;
 }
 
-/* Make sure nothing overflows on very small screens */
-@media (max-width: 420px) {
-  .brand { letter-spacing: 2px; }
-  .btn { padding: 10px 20px; font-size: 0.95rem; }
+.btn {
+  background-color: #0077b5;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background-color: #005f8a;
+}
+
+.scroll-msg {
+  margin-top: 30px;
+  font-size: 1rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Skincare Section */
+.routine-section {
+  padding: 60px 20px;
+  background: #111;
+  text-align: left;
+}
+
+.routine-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #f5c6c6;
+}
+
+.routine {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #1b1b1b;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.routine h3 {
+  color: #f3bebe;
+  margin-bottom: 15px;
+}
+
+.routine ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.routine li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.tip {
+  font-style: italic;
+  color: #ffc6c6;
+}
+
+/* Fade-In Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
