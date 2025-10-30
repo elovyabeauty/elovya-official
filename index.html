@@ -5,84 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elovya Beauty | Skincare Tips</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
-    /* ---------- Base Styles ---------- */
+    /* ---------- General Layout ---------- */
     body {
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(180deg, #fde6ef, #f8bbd0, #fde6ef);
-      color: #3b3b3b;
+      font-family: 'Poppins', sans-serif;
+      color: white;
       text-align: center;
-      padding: 0;
+      height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background 0.5s ease;
     }
 
-    header {
-      padding: 60px 20px 20px 20px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: #e91e63;
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #ff5c8d;
       letter-spacing: 1px;
       margin-bottom: 10px;
     }
 
-    header p {
+    p {
       font-size: 1.1rem;
-      color: #555;
+      color: #ddd;
+      margin-bottom: 40px;
     }
 
     /* ---------- Buttons ---------- */
     .button-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       gap: 25px;
-      margin: 40px 0;
-      flex-wrap: wrap;
+      align-items: center;
     }
 
     button {
-      background-color: #e91e63;
+      background-color: #ff5c8d;
       color: white;
       border: none;
-      padding: 18px 40px;
-      border-radius: 30px;
-      font-size: 1.2rem;
+      padding: 18px 60px;
+      border-radius: 40px;
+      font-size: 1.3rem;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
       font-weight: 600;
-      box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+      box-shadow: 0 6px 14px rgba(255, 92, 141, 0.3);
     }
 
     button:hover {
-      background-color: #c2185b;
-      transform: scale(1.05);
+      background-color: #e91e63;
+      transform: scale(1.07);
     }
 
-    /* ---------- Sections ---------- */
+    /* ---------- Sections (hidden initially) ---------- */
     .section {
       display: none;
-      max-width: 850px;
-      margin: 0 auto 40px auto;
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-      padding: 30px;
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #fde6ef, #f8bbd0, #fde6ef);
+      color: #3b3b3b;
+      padding: 40px 20px;
       text-align: left;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn 0.6s ease;
     }
 
     .section h2 {
       color: #e91e63;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
       border-bottom: 2px solid #f8bbd0;
+      margin-bottom: 25px;
       padding-bottom: 10px;
-      margin-bottom: 20px;
     }
 
     ul {
       list-style: none;
       padding: 0;
-      margin: 0;
+      max-width: 850px;
+      margin: 0 auto;
     }
 
     li {
@@ -90,7 +99,7 @@
       display: flex;
       align-items: center;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     li svg {
@@ -98,39 +107,31 @@
       height: 22px;
       margin-right: 10px;
       fill: #e91e63;
-      flex-shrink: 0;
     }
 
-    /* ---------- Animation ---------- */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---------- Mobile Responsiveness ---------- */
+    /* ---------- Mobile ---------- */
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
+      h1 {
+        font-size: 2.2rem;
       }
 
-      header p {
+      p {
         font-size: 1rem;
-      }
-
-      .button-container {
-        flex-direction: column;
-        align-items: center;
+        padding: 0 20px;
       }
 
       button {
         width: 80%;
         font-size: 1.1rem;
-        padding: 16px 0;
       }
 
-      .section {
-        width: 90%;
-        padding: 20px;
+      .section h2 {
+        font-size: 1.6rem;
       }
 
       li {
@@ -141,34 +142,33 @@
 </head>
 
 <body>
-  <header>
+  <!-- Hero Section -->
+  <div id="mainScreen">
     <h1>🌸 Elovya Beauty 🌸</h1>
-    <p>Coming Soon – Stay Tuned for Luxury Skincare & Cosmetics</p>
-  </header>
+    <p>Coming Soon — Stay Tuned for Luxury Skincare & Cosmetics</p>
 
-  <div class="button-container">
-    <button onclick="toggleSection('routineStyle')">Routine Style</button>
-    <button onclick="toggleSection('whenToUse')">When to Use</button>
+    <div class="button-container">
+      <button onclick="showSection('routineStyle')">Routine Style</button>
+      <button onclick="showSection('whenToUse')">When to Use</button>
+    </div>
   </div>
 
   <!-- 🌿 Routine Style Section -->
   <div id="routineStyle" class="section">
     <h2>🌿 Skincare Routine Style</h2>
     <ul>
-      <li>🧴 <strong>Cleanser:</strong> Apply gently in circular motions for 60 seconds, then rinse with lukewarm water.</li>
-      <li>💧 <strong>Toner:</strong> Pat on the skin with a cotton pad to balance pH and prep for hydration.</li>
-      <li>🧴 <strong>Serum:</strong> Use 2–3 drops, press into skin for deep absorption.</li>
-      <li>🧴 <strong>Moisturizer:</strong> Massage evenly to lock in moisture and smooth texture.</li>
-      <li>🌞 <strong>Sunscreen:</strong> Apply SPF 30+ 15 minutes before stepping out.</li>
-      <li>🌙 <strong>Night Cream:</strong> Use as the final step before bed for skin repair.</li>
-      <li>💄 <strong>Lipstick:</strong> Apply from center outward; blot lightly for a matte look.</li>
-      <li>👁️ <strong>Eyeliner:</strong> Apply close to the lash line for natural definition.</li>
-      <li>🧴 <strong>Foundation:</strong> Blend evenly using sponge/brush; extend towards the neck.</li>
-      <li>🧴 <strong>Concealer:</strong> Dab on dark circles/blemishes; blend gently.</li>
-      <li>🧴 <strong>Highlighter:</strong> Apply on high points—cheekbones, bridge of nose, and cupid’s bow.</li>
-      <li>💆‍♀️ <strong>Face Mask:</strong> Use 2–3 times a week for deep hydration and glow.</li>
-      <li>🧴 <strong>Exfoliator:</strong> Gently scrub once or twice weekly to remove dead skin cells.</li>
-      <li>🧴 <strong>Face Mist:</strong> Spray lightly anytime to refresh and hydrate the skin.</li>
+      <li>🧴 <strong>Cleanser:</strong> Massage for 60 seconds, rinse with lukewarm water.</li>
+      <li>🧴 <strong>Toner:</strong> Pat gently using a cotton pad to balance skin pH.</li>
+      <li>🧴 <strong>Serum:</strong> Apply 2–3 drops and press lightly for absorption.</li>
+      <li>🧴 <strong>Moisturizer:</strong> Massage evenly to hydrate and lock moisture.</li>
+      <li>🌞 <strong>Sunscreen:</strong> Apply SPF 30+ 15 mins before stepping out.</li>
+      <li>🌙 <strong>Night Cream:</strong> Apply before bed for overnight repair.</li>
+      <li>💄 <strong>Lipstick:</strong> Apply from center outward, blot gently for matte look.</li>
+      <li>👁️ <strong>Eyeliner:</strong> Glide close to lash line for soft definition.</li>
+      <li>🧴 <strong>Foundation:</strong> Blend evenly across face and neck.</li>
+      <li>🧴 <strong>Highlighter:</strong> Dab on cheekbones, nose bridge, and cupid’s bow.</li>
+      <li>💆‍♀️ <strong>Face Mask:</strong> Use twice weekly for hydration & glow.</li>
+      <li>🧴 <strong>Exfoliator:</strong> Use once or twice weekly to remove dead skin.</li>
     </ul>
   </div>
 
@@ -177,20 +177,21 @@
     <h2>🕒 When to Use</h2>
     <ul>
       <li>🌅 <strong>Morning:</strong> Cleanser → Toner → Serum → Moisturizer → Sunscreen.</li>
-      <li>☀️ <strong>Afternoon:</strong> Reapply sunscreen every 3 hours, use blotting paper for oil control.</li>
-      <li>🌇 <strong>Evening:</strong> Cleanser → Toner → Serum → Light moisturizer or face mist.</li>
-      <li>🌙 <strong>Night:</strong> Double cleanse → Toner → Eye cream → Night Cream.</li>
-      <li>💃 <strong>Date Night:</strong> Primer → Foundation → Highlighter → Lipstick → Mascara.</li>
-      <li>🎉 <strong>Hangout/Party:</strong> Use BB Cream → Lip Tint → Eyeliner → Compact → Setting Spray.</li>
-      <li>💼 <strong>Workday:</strong> Light moisturizer → Compact → Mascara → Lip balm for natural look.</li>
+      <li>☀️ <strong>Afternoon:</strong> Reapply SPF & hydrate with face mist.</li>
+      <li>🌇 <strong>Evening:</strong> Cleanser → Toner → Serum → Light Moisturizer.</li>
+      <li>🌙 <strong>Night:</strong> Double cleanse → Toner → Eye Cream → Night Cream.</li>
+      <li>💃 <strong>Date Night:</strong> Primer → Foundation → Lipstick → Highlighter.</li>
+      <li>🎉 <strong>Hangout:</strong> BB Cream → Lip Tint → Eyeliner → Compact.</li>
+      <li>💼 <strong>Workday:</strong> Light Moisturizer → Compact → Mascara → Lip Balm.</li>
       <li>🧘 <strong>Self-care Sunday:</strong> Exfoliate → Face Mask → Serum → Night Cream.</li>
     </ul>
   </div>
 
   <script>
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      section.style.display = (section.style.display === "block") ? "none" : "block";
+    function showSection(id) {
+      document.body.style.background = "linear-gradient(180deg, #fde6ef, #f8bbd0, #fde6ef)";
+      document.getElementById("mainScreen").style.display = "none";
+      document.getElementById(id).style.display = "block";
     }
   </script>
 </body>
