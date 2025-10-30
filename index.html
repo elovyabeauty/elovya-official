@@ -3,470 +3,649 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Elovya Beauty — Skincare Tips</title>
+<title>Elovya Beauty — Coming Soon (Skincare Tips & Games)</title>
 
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --pink:#ff5fa2;
-    --pink-dark:#e53a82;
-    --white:#ffffff;
+    --pink: #ff5fa2;
+    --pink-dark: #e53a82;
+    --white: #ffffff;
     --card-bg: rgba(255,255,255,0.98);
-    --text-dark:#2b2b2b;
+    --text-dark: #2b2b2b;
+    --maxw: 1100px;
   }
 
-  /* ---------- Reset ---------- */
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0}
+  /* Reset */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html,body { height:100%; }
   body{
-    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
-    color:var(--white);
-    background:#000;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
+    background: #000;
+    color: var(--white);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
-  /* ---------- Hero (black) with soft blurred pastel background behind it ---------- */
+  /* HERO - black with soft blurred pastel glow behind */
   .hero-wrap{
-    position:relative;
-    min-height:72vh;
+    position: relative;
+    min-height: 74vh;
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:48px 20px;
+    padding: 48px 20px;
     text-align:center;
   }
-
-  /* decorative blurred background layer (soft floral-like pastel) */
   .hero-wrap::before{
     content:"";
-    position:absolute;
-    inset:0;
-    z-index:0;
-    /* layered soft pastels that look like a subtle blurred background */
+    position:absolute; inset:0; z-index:0;
     background:
-      radial-gradient(1200px 600px at 10% 10%, rgba(255,126,196,0.12), transparent 20%),
-      radial-gradient(800px 500px at 90% 30%, rgba(255,199,211,0.10), transparent 18%),
-      linear-gradient(180deg, rgba(255, 235, 241, 0.06), rgba(255, 245, 248, 0.03));
-    filter: blur(18px) saturate(110%);
-    transform: scale(1.02);
+      radial-gradient(800px 400px at 10% 12%, rgba(255,126,196,0.09), transparent 12%),
+      radial-gradient(700px 350px at 88% 28%, rgba(255,199,211,0.08), transparent 14%),
+      linear-gradient(180deg, rgba(255,240,246,0.02), rgba(255,248,250,0.01));
+    filter: blur(16px) saturate(110%);
+    transform:scale(1.02);
     pointer-events:none;
   }
-
-  /* overlay so hero remains dark but with soft tint */
   .hero-wrap::after{
     content:"";
     position:absolute; inset:0; z-index:1;
-    background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.78));
+    background: linear-gradient(180deg, rgba(0,0,0,0.92), rgba(0,0,0,0.78));
     pointer-events:none;
   }
 
-  .hero{
-    position:relative; z-index:2;
-    max-width:980px;
-    width:100%;
-    padding:0 20px;
-  }
+  .hero { position: relative; z-index:2; width:100%; max-width:var(--maxw); padding: 0 18px; }
+  .brand { font-family: "Playfair Display", serif; font-size: 40px; color: var(--pink); margin-bottom:8px; letter-spacing:1px; }
+  .sub { color: rgba(255,255,255,0.88); margin-bottom:32px; font-size:15px; line-height:1.4; }
 
-  .brand{
-    font-family:"Playfair Display", serif;
-    font-weight:700;
-    color:var(--pink);
-    font-size:38px;
-    letter-spacing:1px;
-    margin:0 0 8px;
-  }
-
-  .sub{
-    color:rgba(255,255,255,0.88);
-    margin:0 0 36px;
-    font-size:15px;
-    line-height:1.4;
-  }
-
-  /* ---------- Buttons (white with pink border + glow) ---------- */
-  .actions{
-    display:flex;
-    gap:18px;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-
-  .btn{
-    display:inline-block;
+  /* Buttons: white with pink border & glow */
+  .actions { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:10px;
+    background: var(--white);
+    color: var(--pink);
+    border: 2px solid var(--pink);
+    padding: 16px 44px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 18px;
     cursor:pointer;
-    background:var(--white);
-    color:var(--pink);
-    border:2px solid var(--pink);
-    padding:16px 44px;
-    border-radius:40px;
-    font-weight:600;
-    font-size:18px;
-    box-shadow:0 8px 22px rgba(255,95,162,0.14);
+    box-shadow: 0 10px 30px rgba(255,95,162,0.12);
     transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
-    z-index:2;
+  }
+  .btn:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(255,95,162,0.16); }
+  .btn:focus { outline: 3px solid rgba(255,95,162,0.12); outline-offset:4px; }
+
+  .btn .emoji { font-size:18px; }
+
+  main { padding: 26px 20px 80px; max-width: var(--maxw); margin: 0 auto; }
+
+  /* Card (panel) style - pastel blurred background when expanded */
+  .card {
+    display:none;
+    background: linear-gradient(180deg, rgba(255,230,240,0.95), rgba(255,245,248,0.95));
+    border-radius: 14px;
+    padding: 22px;
+    margin: 24px auto;
+    color: var(--text-dark);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.10);
+    border: 1px solid rgba(179,0,89,0.06);
+  }
+  .card.active { display:block; animation: dropIn .34s ease both; transform-origin: top center; }
+  @keyframes dropIn { from { opacity:0; transform: translateY(12px) } to { opacity:1; transform: translateY(0) } }
+
+  .card h2 { font-family: "Playfair Display", serif; color: var(--pink); font-size: 24px; margin-bottom:8px; }
+  .card p.lead { color:#6a6a6a; margin-bottom:12px; }
+
+  /* list layout */
+  .list { display:grid; gap:12px; list-style:none; padding:0; margin:12px 0 0 0; grid-template-columns: 1fr; }
+  .item {
+    display:flex; gap:14px; align-items:flex-start;
+    background: var(--white); color:var(--text-dark);
+    padding:12px; border-radius:10px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.03);
+  }
+  .icon { min-width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,95,162,0.06), rgba(255,95,162,0.02)); font-size:20px; }
+  .content b { display:block; font-weight:700; margin-bottom:6px; color:var(--text-dark); font-family:"Playfair Display", serif; }
+  .content p { margin:0; color:#444; font-size:15px; line-height:1.5; }
+
+  /* two column layout on wide screens */
+  @media (min-width:920px) {
+    .list { grid-template-columns: repeat(2, 1fr); }
   }
 
-  .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 18px 36px rgba(255,95,162,0.16), 0 4px 10px rgba(0,0,0,0.12);
+  /* fun zone sub layout */
+  .games-zone { display:none; margin-top:18px; padding:18px; border-radius:12px; background: linear-gradient(180deg, rgba(255,243,247,0.95), rgba(255,250,251,0.96)); border:1px solid rgba(179,0,89,0.06); box-shadow:0 12px 30px rgba(0,0,0,0.08); }
+  .games-zone.active { display:block; animation: dropIn .34s ease both; }
+
+  .game-row { display:flex; flex-direction:column; gap:14px; margin-top:12px; }
+  .game-card { background:var(--white); padding:12px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.02); text-align:left; }
+
+  .game-card h3 { margin:0 0 8px; color:var(--pink-dark); font-family:"Playfair Display", serif; }
+  .game-controls { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+
+  /* wheel */
+  .wheel-wrap { display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
+  .wheel { width:180px; height:180px; border-radius:50%; position:relative; overflow:hidden; transform-origin:center; transition: transform 2.6s cubic-bezier(.14,.88,.2,1.0); border:6px solid rgba(255,95,162,0.06); box-shadow:0 6px 24px rgba(0,0,0,0.08); }
+  .wheel .slice { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; color:#fff; mix-blend-mode:screen; text-align:center; padding:8px; }
+
+  .pointer { width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:18px solid var(--pink); margin-left:6px; transform: translateY(-8px); }
+
+  /* drag & drop list for build routine */
+  .drag-list { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .draggable { padding:10px 12px; background:var(--white); border-radius:10px; border:1px dashed rgba(0,0,0,0.06); cursor:grab; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+  .drop-area { min-height:54px; padding:12px; background:linear-gradient(180deg,#fff,#fff); border-radius:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; border:1px dashed rgba(0,0,0,0.06); }
+
+  /* small utility */
+  .muted { color:#6a6a6a; font-size:14px; margin-top:8px; }
+  .score { font-weight:700; color:var(--pink-dark); margin-left:8px; }
+
+  /* back-to-top */
+  .top-btn {
+    position: fixed; right:18px; bottom:18px; z-index:9999;
+    background: var(--white); color: var(--pink); border: 2px solid var(--pink);
+    padding:10px 12px; border-radius:12px; cursor:pointer; box-shadow:0 10px 26px rgba(255,95,162,0.12);
+    display:none;
   }
+  .top-btn.show { display:block; }
 
-  /* small icon spacing */
-  .btn .emoji{margin-right:10px;font-size:18px;line-height:1}
-
-  /* ---------- Card Sections ---------- */
-  main{padding:30px 20px 80px}
-  .card{
-    max-width:980px;
-    margin:28px auto;
-    background:var(--card-bg);
-    color:var(--text-dark);
-    border-radius:14px;
-    padding:26px;
-    box-shadow:0 12px 30px rgba(0,0,0,0.12);
-    display:none; /* toggled via .active */
-    transform-origin:top center;
+  /* responsive */
+  @media (max-width:720px){
+    .brand { font-size:28px; }
+    .btn { padding:14px 22px; font-size:16px; width:100%; max-width:360px;}
+    .wheel { width:140px; height:140px; }
   }
-
-  .card.active{display:block; animation:cardIn .36s ease both}
-
-  @keyframes cardIn{
-    from{opacity:0; transform:translateY(18px) scale(.997)}
-    to{opacity:1; transform:translateY(0) scale(1)}
-  }
-
-  .card h2{
-    font-family:"Playfair Display", serif;
-    color:var(--pink-dark);
-    margin:0 0 14px;
-    font-size:26px;
-    text-align:left;
-  }
-
-  .card .subtitle{
-    color:#6a6a6a;
-    margin-bottom:18px;
-    text-align:left;
-  }
-
-  /* list layout clean */
-  .list{
-    display:grid;
-    gap:12px;
-    grid-template-columns: 1fr;
-    list-style:none;
-    padding:0;
-    margin:0;
-  }
-
-  .item{
-    display:flex;
-    gap:14px;
-    align-items:flex-start;
-    background: #fff;
-    border-radius:10px;
-    padding:14px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.06);
-    border:1px solid rgba(0,0,0,0.03);
-  }
-
-  .item .icon{
-    min-width:42px;
-    height:42px;
-    border-radius:10px;
-    display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(180deg, rgba(255,95,162,0.08), rgba(255,95,162,0.02));
-    font-size:20px;
-  }
-
-  .item .content{
-    text-align:left;
-  }
-
-  .item .content b{display:block; color:var(--text-dark); font-weight:700; margin-bottom:6px}
-  .item .content p{margin:0; color:#444; line-height:1.45; font-size:15px}
-
-  /* two-column on wider screens for lists */
-  @media(min-width:900px){
-    .list{grid-template-columns:repeat(2,1fr)}
-  }
-
-  /* responsive hero tweaks */
-  @media(max-width:720px){
-    .brand{font-size:26px}
-    .sub{font-size:14px}
-    .btn{width:84%; padding:14px; font-size:17px}
-    .card{padding:18px}
-    .card h2{font-size:20px}
-  }
-
-  /* small top-back button in cards */
-  .backBtn{
-    display:inline-block;
-    margin-bottom:12px;
-    color:var(--pink-dark);
-    background:transparent;
-    border:none;
-    font-weight:600;
-    cursor:pointer;
-    padding:6px 10px;
-    border-radius:8px;
-  }
-  .backBtn:hover{opacity:.9}
-
-  /* accessibility focus */
-  .btn:focus, .backBtn:focus {outline:3px solid rgba(255,95,162,0.12); outline-offset:4px}
 </style>
 </head>
 <body>
 
-  <!-- HERO (centered) -->
-  <section class="hero-wrap" aria-hidden="false">
-    <div class="hero" role="banner" aria-label="Elovya hero">
-      <h1 class="brand">🌸 Elovya Beauty 🌸</h1>
-      <p class="sub">Coming Soon — stay tuned for premium skincare & cosmetics crafted with care.</p>
+  <!-- HERO -->
+  <section class="hero-wrap" aria-labelledby="brandTitle">
+    <div class="hero">
+      <h1 id="brandTitle" class="brand">🌸 Elovya Beauty 🌸</h1>
+      <p class="sub">Coming Soon — premium skincare & cosmetics crafted with care. Explore tips or play beauty games while you wait.</p>
 
-      <div class="actions" role="navigation" aria-label="Skincare options">
-        <button class="btn" id="btnRoutine" onclick="openCard('routineCard')">
-          <span class="emoji">💧</span> Routine Style
-        </button>
-
-        <button class="btn" id="btnWhen" onclick="openCard('whenCard')">
-          <span class="emoji">⏰</span> When to Use
-        </button>
+      <div class="actions" role="navigation" aria-label="primary actions">
+        <button class="btn" id="btnRoutine" onclick="openPanel('routineCard')"><span class="emoji">💧</span> Routine Style</button>
+        <button class="btn" id="btnWhen" onclick="openPanel('whenCard')"><span class="emoji">⏰</span> When to Use</button>
       </div>
     </div>
   </section>
 
-  <!-- MAIN content area for expandable cards -->
-  <main id="mainContent" aria-live="polite">
+  <main aria-live="polite">
 
     <!-- Routine Card -->
-    <article id="routineCard" class="card" role="region" aria-labelledby="routineTitle">
-      <button class="backBtn" onclick="closeCard()">← Back</button>
+    <section id="routineCard" class="card" aria-labelledby="routineTitle">
       <h2 id="routineTitle">🌿 Skincare Routine Style</h2>
-      <div class="subtitle">Step-by-step how to apply core skincare & cosmetics for day-to-day use.</div>
+      <p class="lead">Step-by-step: how to use core skincare & cosmetics throughout the day.</p>
 
-      <ul class="list" aria-hidden="false">
-        <li class="item">
-          <div class="icon">🧴</div>
-          <div class="content">
-            <b>Cleanser</b>
-            <p>Massage gently on damp skin 30–60s to remove oil & dirt. Rinse with lukewarm water and pat dry.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💧</div>
-          <div class="content">
-            <b>Toner</b>
-            <p>Pat onto skin using cotton pad or hands to rebalance pH and prep for serums.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">✨</div>
-          <div class="content">
-            <b>Serum</b>
-            <p>Use 2–3 drops, warm between fingers and press into skin (avoid rubbing) for better absorption.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💦</div>
-          <div class="content">
-            <b>Moisturizer</b>
-            <p>Apply while skin is slightly damp; massage using upward strokes to lock hydration.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🌞</div>
-          <div class="content">
-            <b>Sunscreen</b>
-            <p>Use SPF 30+ (broad spectrum). Apply 15 minutes before sun exposure and reapply every 2–3 hours outdoors.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🌙</div>
-          <div class="content">
-            <b>Night Cream</b>
-            <p>Use as final step at night; pick a richer formula for repair and overnight nourishment.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💄</div>
-          <div class="content">
-            <b>Lips (Balm & Lipstick)</b>
-            <p>Apply balm first to hydrate; for lipstick apply from center outward and blot for longer wear.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">👁️</div>
-          <div class="content">
-            <b>Under-eye / Eye Cream</b>
-            <p>Use ring finger to gently tap a pea-size amount under eye; avoid rubbing.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🎨</div>
-          <div class="content">
-            <b>Foundation & Concealer</b>
-            <p>Apply thin layers, blend from center outward; use concealer to spot-correct and brighten under eyes.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💫</div>
-          <div class="content">
-            <b>Highlighter & Blush</b>
-            <p>Place highlighter on cheekbones, nose bridge and cupid’s bow. Apply blush on apples of cheeks and blend.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🧖‍♀️</div>
-          <div class="content">
-            <b>Masks & Exfoliation</b>
-            <p>Use exfoliants 1–2× weekly depending on skin tolerance. Masks 1–2× weekly for targeted care.</p>
-          </div>
-        </li>
+      <ul class="list" id="routineList">
+        <li class="item"><div class="icon">🧴</div><div class="content"><b>Cleanser</b><p>Massage 30–60s on damp skin, then rinse with lukewarm water.</p></div></li>
+        <li class="item"><div class="icon">💧</div><div class="content"><b>Toner</b><p>Pat on skin with cotton pad to rebalance and prep кожу (skin).</p></div></li>
+        <li class="item"><div class="icon">✨</div><div class="content"><b>Serum</b><p>Use 2–3 drops, press gently into skin for absorption.</p></div></li>
+        <li class="item"><div class="icon">💦</div><div class="content"><b>Moisturizer</b><p>Apply while skin is slightly damp; massage upwards.</p></div></li>
+        <li class="item"><div class="icon">🌞</div><div class="content"><b>Sunscreen</b><p>Apply SPF 30–50 15 min before sun exposure; reapply every 2–3 hours outdoors.</p></div></li>
+        <li class="item"><div class="icon">🌙</div><div class="content"><b>Night Cream</b><p>Use as final overnight step for repair and hydration.</p></div></li>
+        <li class="item"><div class="icon">💄</div><div class="content"><b>Lip Care</b><p>Exfoliate weekly; apply balm and then lipstick/gloss as desired.</p></div></li>
+        <li class="item"><div class="icon">👁️</div><div class="content"><b>Eye Cream</b><p>Use ring finger to pat gently around the eye area nightly.</p></div></li>
+        <li class="item"><div class="icon">🎨</div><div class="content"><b>Foundation & Concealer</b><p>Blend from center outward; set with light powder for longevity.</p></div></li>
+        <li class="item"><div class="icon">💫</div><div class="content"><b>Highlighter & Blush</b><p>Apply to high points and apple of cheeks for a natural glow.</p></div></li>
+        <li class="item"><div class="icon">🧖‍♀️</div><div class="content"><b>Masks & Exfoliation</b><p>Exfoliate 1–2× weekly; masks 1–2× weekly depending on needs.</p></div></li>
       </ul>
-    </article>
+    </section>
 
     <!-- When to Use Card -->
-    <article id="whenCard" class="card" role="region" aria-labelledby="whenTitle">
-      <button class="backBtn" onclick="closeCard()">← Back</button>
+    <section id="whenCard" class="card" aria-labelledby="whenTitle">
       <h2 id="whenTitle">⏰ When to Use</h2>
-      <div class="subtitle">Which products to use and when — quick guides for daily life & special occasions.</div>
+      <p class="lead">Quick guide: which products to use for each time & occasion.</p>
 
-      <ul class="list">
-        <li class="item">
-          <div class="icon">🌅</div>
-          <div class="content">
-            <b>Morning</b>
-            <p>Cleanser → Toner → Serum (vitamin C if used) → Moisturizer → Sunscreen.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">☀️</div>
-          <div class="content">
-            <b>Day / Going Out</b>
-            <p>Light coverage (BB/CC), SPF, blot as needed. Reapply sunscreen if outdoors long.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🌇</div>
-          <div class="content">
-            <b>Evening / Party</b>
-            <p>Double-cleanse if wearing makeup; focus on eye makeup + long-wear lip and setting spray.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🌙</div>
-          <div class="content">
-            <b>Night</b>
-            <p>Double cleanse → Toner → Targeted serum (retinol/repair) → Eye cream → Night cream.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💃</div>
-          <div class="content">
-            <b>Date Night</b>
-            <p>Focus on one feature (eyes or lips). Use primer + long-wear base + highlight + signature lipstick.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🎉</div>
-          <div class="content">
-            <b>Hangout / Casual</b>
-            <p>BB cream / light foundation, lip tint, mascara, and a compact for touch-ups.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">💼</div>
-          <div class="content">
-            <b>Workday</b>
-            <p>Simple, polished look: light moisturizer, light base, groomed brows, mascara, lip balm.</p>
-          </div>
-        </li>
-
-        <li class="item">
-          <div class="icon">🧘‍♀️</div>
-          <div class="content">
-            <b>Self-care Sunday</b>
-            <p>Exfoliate → Hydrating mask → Serum → Facial massage → Night cream.</p>
-          </div>
-        </li>
+      <ul class="list" id="whenList">
+        <li class="item"><div class="icon">🌅</div><div class="content"><b>Morning</b><p>Cleanser → Toner → Vitamin C / Hydrating serum → Moisturizer → Sunscreen.</p></div></li>
+        <li class="item"><div class="icon">☀️</div><div class="content"><b>Afternoon</b><p>Reapply sunscreen, use blotting paper or a hydrating mist.</p></div></li>
+        <li class="item"><div class="icon">🌇</div><div class="content"><b>Evening</b><p>Double cleanse if wearing makeup → Toner → Serum → Moisturizer.</p></div></li>
+        <li class="item"><div class="icon">🌙</div><div class="content"><b>Night</b><p>Retinol/repair serums (night only) → Eye cream → Night cream.</p></div></li>
+        <li class="item"><div class="icon">💃</div><div class="content"><b>Date Night</b><p>Primer → Foundation → Highlight → Statement lip or eyes.</p></div></li>
+        <li class="item"><div class="icon">🎉</div><div class="content"><b>Hangout</b><p>BB cream → Lip tint → Mascara → Compact for quick touch-ups.</p></div></li>
+        <li class="item"><div class="icon">💼</div><div class="content"><b>Workday</b><p>Polished natural look: light base, brow groom, mascara, lip balm.</p></div></li>
+        <li class="item"><div class="icon">🧘‍♀️</div><div class="content"><b>Self-care Sunday</b><p>Exfoliate → Hydrating mask → Serum → Facial massage → Night cream.</p></div></li>
       </ul>
-    </article>
+    </section>
+
+    <!-- Play Games button -->
+    <div style="text-align:center; margin-top:8px;">
+      <button class="btn" id="playGamesBtn" onclick="openGames()">🎮 Play Beauty Games</button>
+      <span class="muted">Your Beauty Score: <span id="score">0</span></span>
+    </div>
+
+    <!-- Games Zone -->
+    <section id="gamesZone" class="games-zone" aria-labelledby="gamesTitle">
+      <h2 id="gamesTitle" style="font-family:'Playfair Display', serif; color:var(--pink-dark); margin:0 0 8px;">💋 Fun Beauty Zone</h2>
+      <p class="muted">Play a quiz, build a routine, or spin the glam wheel — each correct/complete action adds to your Beauty Score (resets on reload).</p>
+
+      <div class="game-row">
+
+        <!-- Guess the Product -->
+        <div class="game-card" id="gameGuess">
+          <h3>💄 Guess the Product</h3>
+          <div id="guessArea">
+            <div style="margin-bottom:8px;"><strong>Clue:</strong> <span id="guessClue" style="font-size:1.1rem"></span></div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <input id="guessInput" type="text" placeholder="Type your answer (e.g. sunscreen)" style="padding:10px; border-radius:8px; border:1px solid #eee; flex:1; min-width:180px">
+              <button class="btn" onclick="submitGuess()">Check</button>
+            </div>
+            <div id="guessFeedback" style="margin-top:10px; font-weight:600"></div>
+            <div class="muted" style="margin-top:8px;">Score: <span id="guessScore">0</span></div>
+          </div>
+          <div style="margin-top:10px;"><button style="background:transparent;border:none;color:var(--pink);cursor:pointer;font-weight:600" onclick="newClue()">Next Clue</button></div>
+        </div>
+
+        <!-- Build Your Routine (drag & drop) -->
+        <div class="game-card" id="gameBuild">
+          <h3>🧴 Build Your Routine</h3>
+          <p class="muted">Drag the steps into the correct morning order (Cleanser → Toner → Serum → Moisturizer → Sunscreen)</p>
+
+          <div style="margin-top:10px;">
+            <div class="drop-area" id="dropArea" aria-label="Drop area" tabindex="0"></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="drag-list" id="dragItems" aria-hidden="false"></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btn" onclick="checkRoutine()">Check Order</button>
+            <button class="btn" style="background:transparent;color:var(--pink);border:2px solid var(--pink);" onclick="resetRoutine()">Reset</button>
+            <div id="routineFeedback" style="margin-top:8px;font-weight:600"></div>
+          </div>
+        </div>
+
+        <!-- Spin the Glam Wheel -->
+        <div class="game-card" id="gameSpin">
+          <h3>💋 Spin the Glam Wheel</h3>
+          <div class="wheel-wrap">
+            <div class="wheel" id="wheel" aria-hidden="true">
+              <!-- We'll create 8 colored slices via transform -->
+              <!-- For accessibility we also display the result text next to it -->
+            </div>
+
+            <div style="display:flex;flex-direction:column; gap:10px;">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <div class="pointer" aria-hidden="true"></div>
+                <button class="btn" id="spinBtn" onclick="spinWheel()">Spin</button>
+              </div>
+              <div id="spinResult" class="muted" style="max-width:260px; text-align:left;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div> <!-- end game-row -->
+
+      <div style="margin-top:14px; display:flex; gap:12px; align-items:center; justify-content:flex-end;">
+        <div class="muted">Beauty Score:</div>
+        <div class="score" id="totalScore">0</div>
+      </div>
+    </section>
 
   </main>
 
+  <!-- Back to top button -->
+  <button id="topBtn" class="top-btn" aria-label="Back to top" onclick="scrollToTop()">↑ Top</button>
+
 <script>
-  // single open at a time; smooth expand + scroll behavior
-  function openCard(cardId){
-    // close any open first
-    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+/* --------------------------
+  Sound helper (tiny UI sounds via WebAudio)
+   - clickTone() for button clicks
+   - sparkleTone() for confetti/correct
+--------------------------- */
+const audioCtx = (window.AudioContext || window.webkitAudioContext) ? new (window.AudioContext || window.webkitAudioContext)() : null;
+function playTone(freq, time=0.08, type='sine', gain=0.02){
+  if(!audioCtx) return;
+  const o = audioCtx.createOscillator();
+  const g = audioCtx.createGain();
+  o.type = type; o.frequency.value = freq;
+  g.gain.value = gain;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start();
+  g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + time);
+  setTimeout(()=> o.stop(), time*1000 + 50);
+}
+function clickTone(){ playTone(720,0.06,'sine',0.02) }
+function sparkleTone(){ playTone(1100,0.12,'triangle',0.04); setTimeout(()=>playTone(880,0.08,'sine',0.02),80) }
 
-    const card = document.getElementById(cardId);
-    if(!card) return;
+/* --------------------------
+  Panel open/close logic (smooth scroll & single open)
+--------------------------- */
+function openPanel(panelId){
+  clickTone();
+  // close other active cards
+  document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+  // hide games zone also when opening panels
+  document.querySelectorAll('.games-zone.active').forEach(g=> g.classList.remove('active'));
 
-    // if already open -> close and scroll home (toggle behavior)
-    const wasActive = card.classList.contains('active');
-    if(wasActive){
-      closeCard();
-      return;
-    }
-
-    // open target
-    card.classList.add('active');
-
-    // scroll into view a little offset so the top looks clean
-    setTimeout(()=> {
-      const rect = card.getBoundingClientRect();
-      const top = window.scrollY + rect.top - 20;
-      window.scrollTo({top, behavior:'smooth'});
-    }, 40);
+  const card = document.getElementById(panelId);
+  if(!card) return;
+  const already = card.classList.contains('active');
+  if(already){
+    // if already open, close and scroll up
+    card.classList.remove('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
   }
+  card.classList.add('active');
+  setTimeout(()=> {
+    const rect = card.getBoundingClientRect();
+    const top = window.scrollY + rect.top - 18;
+    window.scrollTo({top, behavior:'smooth'});
+  }, 70);
+}
 
-  function closeCard(){
-    // collapse cards and return to top hero
-    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
-    setTimeout(()=> {
-      // scroll to hero center
-      const hero = document.querySelector('.hero-wrap');
-      if(hero){
-        const top = hero.getBoundingClientRect();
-        const y = window.scrollY + top.top;
-        window.scrollTo({top:y, behavior:'smooth'});
-      } else {
-        window.scrollTo({top:0, behavior:'smooth'});
-      }
-    }, 50);
+/* --------------------------
+  Games: overall state
+--------------------------- */
+let beautyScore = 0;
+const scoreEl = document.getElementById('score');
+const totalScoreEl = document.getElementById('totalScore');
+function updateScore(delta){
+  beautyScore += delta;
+  if(beautyScore < 0) beautyScore = 0;
+  scoreEl.textContent = beautyScore;
+  totalScoreEl.textContent = beautyScore;
+}
+
+/* --------------------------
+  Play Games - reveal games zone
+--------------------------- */
+function openGames(){
+  clickTone();
+  // collapse any open card
+  document.querySelectorAll('.card.active').forEach(c=> c.classList.remove('active'));
+  // show games
+  const zone = document.getElementById('gamesZone');
+  const opened = zone.classList.contains('active');
+  if(opened){
+    zone.classList.remove('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
   }
+  zone.classList.add('active');
+  setTimeout(()=> {
+    zone.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 80);
+  // init games when opening
+  initGuess();
+  initBuild();
+  initWheel();
+}
 
-  // keyboard accessibility - ESC to close
-  document.addEventListener('keydown', (e)=> {
-    if(e.key === 'Escape'){
-      closeCard();
-    }
+/* --------------------------
+  Back to top visibility
+--------------------------- */
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 400) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+});
+function scrollToTop(){ clickTone(); window.scrollTo({top:0, behavior:'smooth'}); }
+
+/* --------------------------
+  Guess the Product Game
+--------------------------- */
+const clues = [
+  {q:'☀️ + 💧', a:'sunscreen', hint:'Think sun protection'},
+  {q:'🧴 + 💦', a:'cleanser', hint:'Used to wash face'},
+  {q:'✨ + 🌿', a:'serum', hint:'A little goes a long way'},
+  {q:'💄 + 👄', a:'lipstick', hint:'Color for lips'},
+  {q:'👁️ + 💤', a:'eye cream', hint:'Use under eyes at night'},
+  {q:'🧖‍♀️ + 🕒', a:'mask', hint:'Weekly self-care step'},
+];
+let currentClue = null;
+let guessScore = 0;
+
+function initGuess(){
+  currentClue = null;
+  guessScore = 0;
+  document.getElementById('guessScore').textContent = guessScore;
+  newClue();
+  document.getElementById('guessFeedback').textContent = '';
+  document.getElementById('guessInput').value = '';
+}
+
+function newClue(){
+  const c = clues[Math.floor(Math.random()*clues.length)];
+  currentClue = c;
+  document.getElementById('guessClue').textContent = c.q + '  (' + c.hint + ')';
+  document.getElementById('guessInput').value = '';
+  document.getElementById('guessFeedback').textContent = '';
+}
+
+function submitGuess(){
+  const inEl = document.getElementById('guessInput');
+  const val = (inEl.value || '').trim().toLowerCase();
+  if(!val){ document.getElementById('guessFeedback').textContent = 'Please type an answer.'; return; }
+  const correct = currentClue.a.toLowerCase();
+  if(val === correct || correct.includes(val) || val.includes(correct)){
+    sparkleTone();
+    document.getElementById('guessFeedback').textContent = 'Correct! +1 point';
+    guessScore += 1;
+    updateScore(1);
+    document.getElementById('guessScore').textContent = guessScore;
+    // next clue auto after a short delay
+    setTimeout(newClue, 900);
+  } else {
+    playWrong();
+    document.getElementById('guessFeedback').textContent = 'Not quite — try again!';
+  }
+}
+
+function playWrong(){ if(audioCtx) { playTone(220,0.08,'sawtooth',0.03); } }
+
+/* --------------------------
+  Build Your Routine (drag & drop)
+--------------------------- */
+const routineSteps = ['Cleanser','Toner','Serum','Moisturizer','Sunscreen'];
+let dragOrder = []; // current dropped order
+
+function initBuild(){
+  // populate draggable pool in random order
+  const pool = document.getElementById('dragItems');
+  pool.innerHTML = '';
+  const shuffled = routineSteps.slice().sort(()=>Math.random()-0.5);
+  shuffled.forEach((name, idx) => {
+    const d = document.createElement('div');
+    d.className = 'draggable';
+    d.draggable = true;
+    d.tabIndex = 0;
+    d.textContent = name;
+    d.dataset.name = name;
+    pool.appendChild(d);
+
+    d.addEventListener('dragstart', (e)=> {
+      e.dataTransfer.setData('text/plain', name);
+      d.classList.add('dragging');
+    });
+    d.addEventListener('dragend', ()=> d.classList.remove('dragging'));
   });
+
+  // setup drop area
+  const drop = document.getElementById('dropArea');
+  drop.innerHTML = ''; dragOrder = [];
+
+  drop.addEventListener('dragover', (e)=> { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', ()=> drop.classList.remove('over'));
+  drop.addEventListener('drop', (e)=> {
+    e.preventDefault();
+    drop.classList.remove('over');
+    const name = e.dataTransfer.getData('text/plain');
+    if(!name) return;
+    // prevent duplicates
+    if(dragOrder.includes(name)) return;
+    dragOrder.push(name);
+    renderDrop();
+  });
+
+  // also support click-to-add (mobile): click draggable to add
+  document.querySelectorAll('.draggable').forEach(d => {
+    d.addEventListener('click', (e) => {
+      const name = d.dataset.name;
+      if(!dragOrder.includes(name)) { dragOrder.push(name); renderDrop(); }
+    });
+  });
+
+  renderDrop();
+}
+
+function renderDrop(){
+  const drop = document.getElementById('dropArea');
+  drop.innerHTML = '';
+  dragOrder.forEach((name, i) => {
+    const pill = document.createElement('div');
+    pill.style.padding = '8px 10px';
+    pill.style.background = 'linear-gradient(180deg,#fff,#fff)';
+    pill.style.borderRadius = '8px';
+    pill.style.border = '1px solid rgba(0,0,0,0.06)';
+    pill.style.display = 'inline-block';
+    pill.style.marginRight = '8px';
+    pill.textContent = name;
+    // allow removal on click
+    pill.addEventListener('click', ()=> {
+      dragOrder.splice(i,1);
+      renderDrop();
+    });
+    drop.appendChild(pill);
+  });
+}
+
+function checkRoutine(){
+  // check if order matches routineSteps
+  if(dragOrder.length !== routineSteps.length){
+    document.getElementById('routineFeedback').textContent = 'Please add all steps (drag or tap each item).';
+    return;
+  }
+  const correct = routineSteps.every((v,i)=> v === dragOrder[i]);
+  if(correct){
+    // confetti via small DOM particles
+    sparkleTone();
+    showConfetti();
+    document.getElementById('routineFeedback').textContent = 'Perfect! +2 points';
+    updateScore(2);
+  } else {
+    playWrong();
+    document.getElementById('routineFeedback').textContent = 'Almost — check the order and try again.';
+  }
+}
+
+function resetRoutine(){
+  initBuild();
+  document.getElementById('routineFeedback').textContent = '';
+}
+
+/* confetti simple */
+function showConfetti(){
+  for(let i=0;i<16;i++){
+    const el = document.createElement('div');
+    el.style.position='fixed';
+    el.style.left = (50 + (Math.random()*160 - 80)) + 'vw';
+    el.style.top = (30 + Math.random()*40) + 'vh';
+    el.style.width = '8px'; el.style.height='14px';
+    el.style.background = ['#ff8fbf','#ffd1e6','#ffc0d9','#ff6f9f'][Math.floor(Math.random()*4)];
+    el.style.opacity=0.95;
+    el.style.transform = 'rotate('+Math.random()*360+'deg)';
+    el.style.borderRadius='2px';
+    el.style.zIndex=9999;
+    document.body.appendChild(el);
+    (function(el){
+      setTimeout(()=> el.style.transition='transform 900ms ease, opacity 900ms ease, top 900ms ease', el.style.top = (parseFloat(el.style.top) + 30 + Math.random()*80) + 'vh', el.style.opacity=0, el.style.transform='translateY(60px) rotate(360deg)');
+      setTimeout(()=> el.remove(), 1100);
+    })(el);
+  }
+}
+
+/* --------------------------
+  Spin the Glam Wheel
+--------------------------- */
+let wheelDeg = 0;
+const wheelTips = [
+  "Hydrate — water is your skin's best friend 💧",
+  "SPF every day, even on cloudy days ☀️",
+  "Exfoliate gently 1–2x weekly for glow ✨",
+  "Lip care matters — exfoliate + balm 💋",
+  "Double-cleanse for heavy makeup removal 🧴",
+  "Use antioxidants (Vit C) in morning 🌞",
+  "Eye cream: dab, don't rub 👁️",
+  "Face masks: weekly self-care 🧖‍♀️"
+];
+function initWheel(){
+  const wheel = document.getElementById('wheel');
+  wheel.innerHTML = '';
+  const colors = ['#ff98c4','#ffc9e0','#ffd6ec','#ffb6d6','#ffc7e6','#ffd1ea','#ffb3d1','#ffddf2'];
+  const n = wheelTips.length;
+  for(let i=0;i<n;i++){
+    const slice = document.createElement('div');
+    slice.className='slice';
+    slice.style.transform = `rotate(${i*(360/n)}deg)`;
+    slice.style.background = colors[i % colors.length];
+    slice.style.clipPath = `polygon(50% 50%, 100% 0, 100% 100%)`;
+    slice.style.opacity = 0.98;
+    slice.innerHTML = `<div style="transform: rotate(${(i*(360/n)+360/n/2)}deg); width:100%; text-align:center; font-size:12px; color:#6a0a3e;">${wheelTips[i]}</div>`;
+    wheel.appendChild(slice);
+  }
+}
+
+function spinWheel(){
+  clickTone();
+  const wheel = document.getElementById('wheel');
+  const n = wheelTips.length;
+  const extra = 360 * (3 + Math.floor(Math.random()*3)); // 3-5 spins
+  const pick = Math.floor(Math.random()*n);
+  const anglePer = 360 / n;
+  const targetDeg = extra + (pick * anglePer) + anglePer/2;
+  wheel.style.transition = 'transform 2.6s cubic-bezier(.14,.88,.2,1.0)';
+  wheel.style.transform = `rotate(-${targetDeg}deg)`;
+  // disable spin button briefly
+  const spinBtn = document.getElementById('spinBtn'); spinBtn.disabled = true;
+  setTimeout(()=>{
+    // show result
+    const res = wheelTips[pick];
+    document.getElementById('spinResult').textContent = res + " — +1 point";
+    sparkleTone();
+    updateScore(1);
+    spinBtn.disabled = false;
+  }, 2600);
+}
+
+/* --------------------------
+  Init all games when DOM ready
+--------------------------- */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // init score
+  beautyScore = 0; updateScore(0);
+  // prepare wheel slices ahead for nicer animation
+  initWheel();
+  // ensure drag list container present even before opening
+  const dragCont = document.getElementById('dragItems');
+  if(!dragCont.innerHTML.trim()) {
+    // will be populated when openGames calls initBuild
+    dragCont.innerHTML = '';
+  }
+  // show/hide back-to-top
+  window.addEventListener('scroll', ()=> {
+    const topBtn = document.getElementById('topBtn');
+    if(window.scrollY > 420) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+  });
+});
+
+/* small helper tone function used above if audioCtx exists */
+function playTone(freq, time=0.06, type='sine', gain=0.02){
+  if(!audioCtx) return;
+  const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+  o.type = type; o.frequency.value = freq; g.gain.value = gain;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + time);
+  setTimeout(()=> o.stop(), (time*1000)+40);
+}
 </script>
 
 </body>
