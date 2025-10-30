@@ -1,198 +1,473 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elovya Beauty | Skincare Tips</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Elovya Beauty — Skincare Tips</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- General Layout ---------- */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      text-align: center;
-      height: 100vh;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      transition: background 0.5s ease;
-    }
+<style>
+  :root{
+    --pink:#ff5fa2;
+    --pink-dark:#e53a82;
+    --white:#ffffff;
+    --card-bg: rgba(255,255,255,0.98);
+    --text-dark:#2b2b2b;
+  }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      color: #ff5c8d;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-    }
+  /* ---------- Reset ---------- */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    color:var(--white);
+    background:#000;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+  }
 
-    p {
-      font-size: 1.1rem;
-      color: #ddd;
-      margin-bottom: 40px;
-    }
+  /* ---------- Hero (black) with soft blurred pastel background behind it ---------- */
+  .hero-wrap{
+    position:relative;
+    min-height:72vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:48px 20px;
+    text-align:center;
+  }
 
-    /* ---------- Buttons ---------- */
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      align-items: center;
-    }
+  /* decorative blurred background layer (soft floral-like pastel) */
+  .hero-wrap::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    /* layered soft pastels that look like a subtle blurred background */
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(255,126,196,0.12), transparent 20%),
+      radial-gradient(800px 500px at 90% 30%, rgba(255,199,211,0.10), transparent 18%),
+      linear-gradient(180deg, rgba(255, 235, 241, 0.06), rgba(255, 245, 248, 0.03));
+    filter: blur(18px) saturate(110%);
+    transform: scale(1.02);
+    pointer-events:none;
+  }
 
-    button {
-      background-color: #ff5c8d;
-      color: white;
-      border: none;
-      padding: 18px 60px;
-      border-radius: 40px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      box-shadow: 0 6px 14px rgba(255, 92, 141, 0.3);
-    }
+  /* overlay so hero remains dark but with soft tint */
+  .hero-wrap::after{
+    content:"";
+    position:absolute; inset:0; z-index:1;
+    background: linear-gradient(180deg, rgba(0,0,0,0.88), rgba(0,0,0,0.78));
+    pointer-events:none;
+  }
 
-    button:hover {
-      background-color: #e91e63;
-      transform: scale(1.07);
-    }
+  .hero{
+    position:relative; z-index:2;
+    max-width:980px;
+    width:100%;
+    padding:0 20px;
+  }
 
-    /* ---------- Sections (hidden initially) ---------- */
-    .section {
-      display: none;
-      width: 100%;
-      min-height: 100vh;
-      background: linear-gradient(180deg, #fde6ef, #f8bbd0, #fde6ef);
-      color: #3b3b3b;
-      padding: 40px 20px;
-      text-align: left;
-      animation: fadeIn 0.6s ease;
-    }
+  .brand{
+    font-family:"Playfair Display", serif;
+    font-weight:700;
+    color:var(--pink);
+    font-size:38px;
+    letter-spacing:1px;
+    margin:0 0 8px;
+  }
 
-    .section h2 {
-      color: #e91e63;
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      text-align: center;
-      border-bottom: 2px solid #f8bbd0;
-      margin-bottom: 25px;
-      padding-bottom: 10px;
-    }
+  .sub{
+    color:rgba(255,255,255,0.88);
+    margin:0 0 36px;
+    font-size:15px;
+    line-height:1.4;
+  }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 850px;
-      margin: 0 auto;
-    }
+  /* ---------- Buttons (white with pink border + glow) ---------- */
+  .actions{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
 
-    li {
-      margin: 14px 0;
-      display: flex;
-      align-items: center;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
+  .btn{
+    display:inline-block;
+    cursor:pointer;
+    background:var(--white);
+    color:var(--pink);
+    border:2px solid var(--pink);
+    padding:16px 44px;
+    border-radius:40px;
+    font-weight:600;
+    font-size:18px;
+    box-shadow:0 8px 22px rgba(255,95,162,0.14);
+    transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease;
+    z-index:2;
+  }
 
-    li svg {
-      width: 22px;
-      height: 22px;
-      margin-right: 10px;
-      fill: #e91e63;
-    }
+  .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 36px rgba(255,95,162,0.16), 0 4px 10px rgba(0,0,0,0.12);
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  /* small icon spacing */
+  .btn .emoji{margin-right:10px;font-size:18px;line-height:1}
 
-    /* ---------- Mobile ---------- */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
+  /* ---------- Card Sections ---------- */
+  main{padding:30px 20px 80px}
+  .card{
+    max-width:980px;
+    margin:28px auto;
+    background:var(--card-bg);
+    color:var(--text-dark);
+    border-radius:14px;
+    padding:26px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.12);
+    display:none; /* toggled via .active */
+    transform-origin:top center;
+  }
 
-      p {
-        font-size: 1rem;
-        padding: 0 20px;
-      }
+  .card.active{display:block; animation:cardIn .36s ease both}
 
-      button {
-        width: 80%;
-        font-size: 1.1rem;
-      }
+  @keyframes cardIn{
+    from{opacity:0; transform:translateY(18px) scale(.997)}
+    to{opacity:1; transform:translateY(0) scale(1)}
+  }
 
-      .section h2 {
-        font-size: 1.6rem;
-      }
+  .card h2{
+    font-family:"Playfair Display", serif;
+    color:var(--pink-dark);
+    margin:0 0 14px;
+    font-size:26px;
+    text-align:left;
+  }
 
-      li {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+  .card .subtitle{
+    color:#6a6a6a;
+    margin-bottom:18px;
+    text-align:left;
+  }
+
+  /* list layout clean */
+  .list{
+    display:grid;
+    gap:12px;
+    grid-template-columns: 1fr;
+    list-style:none;
+    padding:0;
+    margin:0;
+  }
+
+  .item{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    background: #fff;
+    border-radius:10px;
+    padding:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    border:1px solid rgba(0,0,0,0.03);
+  }
+
+  .item .icon{
+    min-width:42px;
+    height:42px;
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, rgba(255,95,162,0.08), rgba(255,95,162,0.02));
+    font-size:20px;
+  }
+
+  .item .content{
+    text-align:left;
+  }
+
+  .item .content b{display:block; color:var(--text-dark); font-weight:700; margin-bottom:6px}
+  .item .content p{margin:0; color:#444; line-height:1.45; font-size:15px}
+
+  /* two-column on wider screens for lists */
+  @media(min-width:900px){
+    .list{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* responsive hero tweaks */
+  @media(max-width:720px){
+    .brand{font-size:26px}
+    .sub{font-size:14px}
+    .btn{width:84%; padding:14px; font-size:17px}
+    .card{padding:18px}
+    .card h2{font-size:20px}
+  }
+
+  /* small top-back button in cards */
+  .backBtn{
+    display:inline-block;
+    margin-bottom:12px;
+    color:var(--pink-dark);
+    background:transparent;
+    border:none;
+    font-weight:600;
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:8px;
+  }
+  .backBtn:hover{opacity:.9}
+
+  /* accessibility focus */
+  .btn:focus, .backBtn:focus {outline:3px solid rgba(255,95,162,0.12); outline-offset:4px}
+</style>
 </head>
-
 <body>
-  <!-- Hero Section -->
-  <div id="mainScreen">
-    <h1>🌸 Elovya Beauty 🌸</h1>
-    <p>Coming Soon — Stay Tuned for Luxury Skincare & Cosmetics</p>
 
-    <div class="button-container">
-      <button onclick="showSection('routineStyle')">Routine Style</button>
-      <button onclick="showSection('whenToUse')">When to Use</button>
+  <!-- HERO (centered) -->
+  <section class="hero-wrap" aria-hidden="false">
+    <div class="hero" role="banner" aria-label="Elovya hero">
+      <h1 class="brand">🌸 Elovya Beauty 🌸</h1>
+      <p class="sub">Coming Soon — stay tuned for premium skincare & cosmetics crafted with care.</p>
+
+      <div class="actions" role="navigation" aria-label="Skincare options">
+        <button class="btn" id="btnRoutine" onclick="openCard('routineCard')">
+          <span class="emoji">💧</span> Routine Style
+        </button>
+
+        <button class="btn" id="btnWhen" onclick="openCard('whenCard')">
+          <span class="emoji">⏰</span> When to Use
+        </button>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- 🌿 Routine Style Section -->
-  <div id="routineStyle" class="section">
-    <h2>🌿 Skincare Routine Style</h2>
-    <ul>
-      <li>🧴 <strong>Cleanser:</strong> Massage for 60 seconds, rinse with lukewarm water.</li>
-      <li>🧴 <strong>Toner:</strong> Pat gently using a cotton pad to balance skin pH.</li>
-      <li>🧴 <strong>Serum:</strong> Apply 2–3 drops and press lightly for absorption.</li>
-      <li>🧴 <strong>Moisturizer:</strong> Massage evenly to hydrate and lock moisture.</li>
-      <li>🌞 <strong>Sunscreen:</strong> Apply SPF 30+ 15 mins before stepping out.</li>
-      <li>🌙 <strong>Night Cream:</strong> Apply before bed for overnight repair.</li>
-      <li>💄 <strong>Lipstick:</strong> Apply from center outward, blot gently for matte look.</li>
-      <li>👁️ <strong>Eyeliner:</strong> Glide close to lash line for soft definition.</li>
-      <li>🧴 <strong>Foundation:</strong> Blend evenly across face and neck.</li>
-      <li>🧴 <strong>Highlighter:</strong> Dab on cheekbones, nose bridge, and cupid’s bow.</li>
-      <li>💆‍♀️ <strong>Face Mask:</strong> Use twice weekly for hydration & glow.</li>
-      <li>🧴 <strong>Exfoliator:</strong> Use once or twice weekly to remove dead skin.</li>
-    </ul>
-  </div>
+  <!-- MAIN content area for expandable cards -->
+  <main id="mainContent" aria-live="polite">
 
-  <!-- 🕒 When to Use Section -->
-  <div id="whenToUse" class="section">
-    <h2>🕒 When to Use</h2>
-    <ul>
-      <li>🌅 <strong>Morning:</strong> Cleanser → Toner → Serum → Moisturizer → Sunscreen.</li>
-      <li>☀️ <strong>Afternoon:</strong> Reapply SPF & hydrate with face mist.</li>
-      <li>🌇 <strong>Evening:</strong> Cleanser → Toner → Serum → Light Moisturizer.</li>
-      <li>🌙 <strong>Night:</strong> Double cleanse → Toner → Eye Cream → Night Cream.</li>
-      <li>💃 <strong>Date Night:</strong> Primer → Foundation → Lipstick → Highlighter.</li>
-      <li>🎉 <strong>Hangout:</strong> BB Cream → Lip Tint → Eyeliner → Compact.</li>
-      <li>💼 <strong>Workday:</strong> Light Moisturizer → Compact → Mascara → Lip Balm.</li>
-      <li>🧘 <strong>Self-care Sunday:</strong> Exfoliate → Face Mask → Serum → Night Cream.</li>
-    </ul>
-  </div>
+    <!-- Routine Card -->
+    <article id="routineCard" class="card" role="region" aria-labelledby="routineTitle">
+      <button class="backBtn" onclick="closeCard()">← Back</button>
+      <h2 id="routineTitle">🌿 Skincare Routine Style</h2>
+      <div class="subtitle">Step-by-step how to apply core skincare & cosmetics for day-to-day use.</div>
 
-  <script>
-    function showSection(id) {
-      document.body.style.background = "linear-gradient(180deg, #fde6ef, #f8bbd0, #fde6ef)";
-      document.getElementById("mainScreen").style.display = "none";
-      document.getElementById(id).style.display = "block";
+      <ul class="list" aria-hidden="false">
+        <li class="item">
+          <div class="icon">🧴</div>
+          <div class="content">
+            <b>Cleanser</b>
+            <p>Massage gently on damp skin 30–60s to remove oil & dirt. Rinse with lukewarm water and pat dry.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💧</div>
+          <div class="content">
+            <b>Toner</b>
+            <p>Pat onto skin using cotton pad or hands to rebalance pH and prep for serums.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">✨</div>
+          <div class="content">
+            <b>Serum</b>
+            <p>Use 2–3 drops, warm between fingers and press into skin (avoid rubbing) for better absorption.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💦</div>
+          <div class="content">
+            <b>Moisturizer</b>
+            <p>Apply while skin is slightly damp; massage using upward strokes to lock hydration.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🌞</div>
+          <div class="content">
+            <b>Sunscreen</b>
+            <p>Use SPF 30+ (broad spectrum). Apply 15 minutes before sun exposure and reapply every 2–3 hours outdoors.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🌙</div>
+          <div class="content">
+            <b>Night Cream</b>
+            <p>Use as final step at night; pick a richer formula for repair and overnight nourishment.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💄</div>
+          <div class="content">
+            <b>Lips (Balm & Lipstick)</b>
+            <p>Apply balm first to hydrate; for lipstick apply from center outward and blot for longer wear.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">👁️</div>
+          <div class="content">
+            <b>Under-eye / Eye Cream</b>
+            <p>Use ring finger to gently tap a pea-size amount under eye; avoid rubbing.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🎨</div>
+          <div class="content">
+            <b>Foundation & Concealer</b>
+            <p>Apply thin layers, blend from center outward; use concealer to spot-correct and brighten under eyes.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💫</div>
+          <div class="content">
+            <b>Highlighter & Blush</b>
+            <p>Place highlighter on cheekbones, nose bridge and cupid’s bow. Apply blush on apples of cheeks and blend.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🧖‍♀️</div>
+          <div class="content">
+            <b>Masks & Exfoliation</b>
+            <p>Use exfoliants 1–2× weekly depending on skin tolerance. Masks 1–2× weekly for targeted care.</p>
+          </div>
+        </li>
+      </ul>
+    </article>
+
+    <!-- When to Use Card -->
+    <article id="whenCard" class="card" role="region" aria-labelledby="whenTitle">
+      <button class="backBtn" onclick="closeCard()">← Back</button>
+      <h2 id="whenTitle">⏰ When to Use</h2>
+      <div class="subtitle">Which products to use and when — quick guides for daily life & special occasions.</div>
+
+      <ul class="list">
+        <li class="item">
+          <div class="icon">🌅</div>
+          <div class="content">
+            <b>Morning</b>
+            <p>Cleanser → Toner → Serum (vitamin C if used) → Moisturizer → Sunscreen.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">☀️</div>
+          <div class="content">
+            <b>Day / Going Out</b>
+            <p>Light coverage (BB/CC), SPF, blot as needed. Reapply sunscreen if outdoors long.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🌇</div>
+          <div class="content">
+            <b>Evening / Party</b>
+            <p>Double-cleanse if wearing makeup; focus on eye makeup + long-wear lip and setting spray.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🌙</div>
+          <div class="content">
+            <b>Night</b>
+            <p>Double cleanse → Toner → Targeted serum (retinol/repair) → Eye cream → Night cream.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💃</div>
+          <div class="content">
+            <b>Date Night</b>
+            <p>Focus on one feature (eyes or lips). Use primer + long-wear base + highlight + signature lipstick.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🎉</div>
+          <div class="content">
+            <b>Hangout / Casual</b>
+            <p>BB cream / light foundation, lip tint, mascara, and a compact for touch-ups.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">💼</div>
+          <div class="content">
+            <b>Workday</b>
+            <p>Simple, polished look: light moisturizer, light base, groomed brows, mascara, lip balm.</p>
+          </div>
+        </li>
+
+        <li class="item">
+          <div class="icon">🧘‍♀️</div>
+          <div class="content">
+            <b>Self-care Sunday</b>
+            <p>Exfoliate → Hydrating mask → Serum → Facial massage → Night cream.</p>
+          </div>
+        </li>
+      </ul>
+    </article>
+
+  </main>
+
+<script>
+  // single open at a time; smooth expand + scroll behavior
+  function openCard(cardId){
+    // close any open first
+    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+
+    const card = document.getElementById(cardId);
+    if(!card) return;
+
+    // if already open -> close and scroll home (toggle behavior)
+    const wasActive = card.classList.contains('active');
+    if(wasActive){
+      closeCard();
+      return;
     }
-  </script>
+
+    // open target
+    card.classList.add('active');
+
+    // scroll into view a little offset so the top looks clean
+    setTimeout(()=> {
+      const rect = card.getBoundingClientRect();
+      const top = window.scrollY + rect.top - 20;
+      window.scrollTo({top, behavior:'smooth'});
+    }, 40);
+  }
+
+  function closeCard(){
+    // collapse cards and return to top hero
+    document.querySelectorAll('.card.active').forEach(c => c.classList.remove('active'));
+    setTimeout(()=> {
+      // scroll to hero center
+      const hero = document.querySelector('.hero-wrap');
+      if(hero){
+        const top = hero.getBoundingClientRect();
+        const y = window.scrollY + top.top;
+        window.scrollTo({top:y, behavior:'smooth'});
+      } else {
+        window.scrollTo({top:0, behavior:'smooth'});
+      }
+    }, 50);
+  }
+
+  // keyboard accessibility - ESC to close
+  document.addEventListener('keydown', (e)=> {
+    if(e.key === 'Escape'){
+      closeCard();
+    }
+  });
+</script>
+
 </body>
 </html>
