@@ -3,103 +3,262 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elovya Beauty | Coming Soon</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Elovya Beauty | Launching Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      color: white;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0e0e0e, #1f1f1f, #3c3c3c, #0e0e0e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .video-container {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    h1 { font-size: 2.5em; letter-spacing: 2px; }
+    p { margin-top: 10px; font-size: 1.1em; }
+
+    .btn {
+      margin-top: 25px;
+      background-color: #0077b5;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #005f8c;
+      transform: scale(1.05);
+    }
+
+    .scroll-text {
+      margin-top: 25px;
+      font-size: 0.95em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-5px); }
+      60% { transform: translateY(-3px); }
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      background-color: #121212;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      color: #f4b5c1;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 15px;
+      font-size: 1.1em;
+      line-height: 1.8em;
+    }
+
+    .category {
+      margin-top: 40px;
+    }
+
+    .category h3 {
+      color: #ffd5e1;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #0a0a0a;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Launch Section -->
-  <section class="launch-section">
-    <video autoplay muted loop playsinline class="background-video">
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
       <source src="launch.mp4" type="video/mp4" />
     </video>
     <div class="overlay">
       <h1>LAUNCHING SOON</h1>
       <p>STAY TUNED</p>
-      <a href="https://www.linkedin.com/company/elovyabeauty/" target="_blank" class="btn">Follow us on LinkedIn</a>
-      <div class="scroll-msg">↓ Scroll down for skincare tips ↓</div>
+      <a class="btn" href="https://www.linkedin.com/in/elovyabeauty?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">Follow us on LinkedIn</a>
+      <div class="scroll-text">↓ Scroll down for skincare tips ↓</div>
+    </div>
+  </div>
+
+  <!-- Skincare Routine -->
+  <section class="fade">
+    <h2>🌞 Morning Skincare Routine</h2>
+    <ul>
+      <li>Cleanser – Removes oil and dirt buildup.</li>
+      <li>Toner – Refreshes and tightens pores.</li>
+      <li>Moisturizer – Keeps your skin hydrated all day.</li>
+      <li>Sunscreen – Protects against UV rays.</li>
+    </ul>
+  </section>
+
+  <section class="fade">
+    <h2>🌆 Evening & Party Routine</h2>
+    <ul>
+      <li>Cleanse with micellar water to remove makeup.</li>
+      <li>Apply serum for glow and hydration.</li>
+      <li>Use lipstick, highlighter, and eye makeup for the occasion.</li>
+    </ul>
+  </section>
+
+  <section class="fade">
+    <h2>🌙 Bedtime Routine</h2>
+    <ul>
+      <li>Remove makeup completely.</li>
+      <li>Cleanse and apply night cream or sleeping mask.</li>
+    </ul>
+  </section>
+
+  <!-- Cosmetic Product Guide -->
+  <section class="fade">
+    <h2>💄 Cosmetic Essentials & How to Use Them</h2>
+
+    <div class="category">
+      <h3>Face</h3>
+      <ul>
+        <li>Primer – Apply before makeup for smooth base.</li>
+        <li>Foundation – Blend evenly using sponge or brush.</li>
+        <li>Concealer – Dab on dark spots or under eyes.</li>
+        <li>Compact/Setting Powder – Locks makeup for long wear.</li>
+        <li>Blush – Apply on cheeks for a natural flush.</li>
+        <li>Highlighter – Use on cheekbones and nose bridge.</li>
+        <li>Setting Spray – Spray to keep makeup in place.</li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <h3>Eyes</h3>
+      <ul>
+        <li>Kajal – Line your waterline for bold eyes.</li>
+        <li>Eyeliner – Apply close to lashes for definition.</li>
+        <li>Mascara – Wiggle wand upward for voluminous lashes.</li>
+        <li>Eyeshadow – Blend light to dark shades for depth.</li>
+        <li>Brow Pencil – Fill and shape eyebrows naturally.</li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <h3>Lips</h3>
+      <ul>
+        <li>Lip Balm – Keeps lips soft and hydrated.</li>
+        <li>Lipstick – Apply evenly for color and confidence.</li>
+        <li>Lip Gloss – Adds shine and volume.</li>
+        <li>Lip Liner – Define lips before applying lipstick.</li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <h3>Skincare</h3>
+      <ul>
+        <li>Cleanser – Wash away impurities twice daily.</li>
+        <li>Toner – Tightens pores and balances pH.</li>
+        <li>Moisturizer – Apply after toner to lock hydration.</li>
+        <li>Sunscreen – Use daily before stepping out.</li>
+        <li>Serum – Apply a few drops for targeted treatment.</li>
+        <li>Night Cream – Rejuvenates skin overnight.</li>
+        <li>Face Mask – Use weekly for deep nourishment.</li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <h3>Nails</h3>
+      <ul>
+        <li>Nail Polish – Apply in thin layers for smooth finish.</li>
+        <li>Remover – Gently wipe off old polish.</li>
+        <li>Cuticle Oil – Massage to strengthen nails.</li>
+      </ul>
+    </div>
+
+    <div class="category">
+      <h3>Fragrance</h3>
+      <ul>
+        <li>Perfume – Apply on pulse points for long-lasting scent.</li>
+        <li>Body Mist – Light fragrance for all-day freshness.</li>
+        <li>Deodorant – Use to prevent odor and stay confident.</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Skincare Routine Section -->
-  <section class="routine-section">
-    <h2 class="fade-in">✨ Build Your Perfect Skincare Routine ✨</h2>
-
-    <div class="routine fade-in">
-      <h3>🌿 Stay-at-Home Essentials</h3>
-      <ul>
-        <li><strong>Cleanser:</strong> Use a gentle, hydrating cleanser to remove impurities.</li>
-        <li><strong>Toner:</strong> Balance your skin’s pH for a refreshed feel.</li>
-        <li><strong>Moisturizer:</strong> Apply evenly to lock in hydration.</li>
-        <li><strong>Lip Balm:</strong> Keep your lips soft and hydrated all day.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Even indoors, apply a light sunscreen — blue light can harm too!</li>
-      </ul>
-    </div>
-
-    <div class="routine fade-in">
-      <h3>☀️ Daytime Routine (Going Out)</h3>
-      <ul>
-        <li><strong>Cleanser:</strong> Start fresh with a mild face wash.</li>
-        <li><strong>Serum:</strong> Add Vitamin C serum for glow and sun protection.</li>
-        <li><strong>Moisturizer:</strong> Use a lightweight, SPF-based moisturizer.</li>
-        <li><strong>Sunscreen:</strong> Never skip — apply evenly on face and neck.</li>
-        <li><strong>Lip Tint:</strong> Add a natural tint for a radiant look.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Always reapply sunscreen every 3–4 hours outdoors.</li>
-      </ul>
-    </div>
-
-    <div class="routine fade-in">
-      <h3>🌇 Evening / Party Look</h3>
-      <ul>
-        <li><strong>Cleanser:</strong> Clean your face to remove daytime dust and oil.</li>
-        <li><strong>Primer:</strong> Smooth base for makeup.</li>
-        <li><strong>Foundation & Concealer:</strong> Blend gently for a flawless finish.</li>
-        <li><strong>Eye Makeup:</strong> Define your eyes with kajal, liner & mascara.</li>
-        <li><strong>Lipstick:</strong> Choose bold, confident shades by Elovya.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Dab highlighter lightly on cheekbones for that glow!</li>
-      </ul>
-    </div>
-
-    <div class="routine fade-in">
-      <h3>💖 Date Night Routine</h3>
-      <ul>
-        <li><strong>Exfoliate:</strong> Gently remove dead cells for smoother skin.</li>
-        <li><strong>Serum:</strong> Hydrating or brightening serum adds instant radiance.</li>
-        <li><strong>Makeup Base:</strong> Use BB cream or light foundation.</li>
-        <li><strong>Perfume:</strong> Spray on pulse points for long-lasting fragrance.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Confidence is your best glow — smile naturally!</li>
-      </ul>
-    </div>
-
-    <div class="routine fade-in">
-      <h3>🎉 Hanging Out with Friends</h3>
-      <ul>
-        <li><strong>Toner + Moisturizer:</strong> Quick refresh for your skin.</li>
-        <li><strong>Compact Powder:</strong> Reduce shine without heavy makeup.</li>
-        <li><strong>Gloss:</strong> Add shimmer for a fun, effortless vibe.</li>
-        <li><strong>Perfume:</strong> Keep it light and playful.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Go minimal — let your natural beauty shine through!</li>
-      </ul>
-    </div>
-
-    <div class="routine fade-in">
-      <h3>🌙 Bedtime Routine</h3>
-      <ul>
-        <li><strong>Makeup Remover:</strong> Never sleep with makeup on.</li>
-        <li><strong>Cleanser:</strong> Deep clean to clear pores.</li>
-        <li><strong>Night Cream:</strong> Apply evenly on face & neck.</li>
-        <li><strong>Eye Cream:</strong> Gently tap under eyes to reduce puffiness.</li>
-        <li class="tip">💡 <em>Elovya Tip:</em> Sleep 7–8 hours — beauty truly starts with rest.</li>
-      </ul>
-    </div>
-  </section>
+  <footer>
+    © 2025 Elovya Beauty | All Rights Reserved
+  </footer>
 
   <script>
-    const fadeEls = document.querySelectorAll('.fade-in');
-    window.addEventListener('scroll', () => {
-      fadeEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          el.classList.add('visible');
+    const faders = document.querySelectorAll(".fade");
+    window.addEventListener("scroll", () => {
+      faders.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < window.innerHeight - 100) {
+          section.classList.add("visible");
         }
       });
     });
