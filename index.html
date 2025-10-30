@@ -1,50 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Elovya Beauty | Launching Soon</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elovya Beauty | Coming Soon</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background video -->
-  <video
-    id="bgVideo"
-    class="bg-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    aria-hidden="true"
-  >
-    <source src="videos/launch.mp4" type="video/mp4" />
-    <!-- fallback text -->
-  </video>
+  <!-- Launch Section -->
+  <section class="launch-section">
+    <video autoplay muted loop playsinline class="background-video">
+      <source src="launch.mp4" type="video/mp4" />
+    </video>
+    <div class="overlay">
+      <h1>LAUNCHING SOON</h1>
+      <p>STAY TUNED</p>
+      <a href="https://www.linkedin.com/company/elovyabeauty/" target="_blank" class="btn">Follow us on LinkedIn</a>
+      <div class="scroll-msg">↓ Scroll down for skincare tips ↓</div>
+    </div>
+  </section>
 
-  <!-- Main content -->
-  <main class="content" role="main">
-    <h1 class="brand">LAUNCHING SOON</h1>
-    <p class="sub">STAY TUNED</p>
-    <a class="btn" href="https://www.linkedin.com/company/elovyabeauty" target="_blank" rel="noopener noreferrer">
-      Follow us on LinkedIn
-    </a>
-  </main>
+  <!-- Skincare Routine Section -->
+  <section class="routine-section">
+    <h2 class="fade-in">✨ Build Your Perfect Skincare Routine ✨</h2>
 
-  <!-- Small autoplay safety: try play if browser blocks initially -->
+    <div class="routine fade-in">
+      <h3>🌿 Stay-at-Home Essentials</h3>
+      <ul>
+        <li><strong>Cleanser:</strong> Use a gentle, hydrating cleanser to remove impurities.</li>
+        <li><strong>Toner:</strong> Balance your skin’s pH for a refreshed feel.</li>
+        <li><strong>Moisturizer:</strong> Apply evenly to lock in hydration.</li>
+        <li><strong>Lip Balm:</strong> Keep your lips soft and hydrated all day.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Even indoors, apply a light sunscreen — blue light can harm too!</li>
+      </ul>
+    </div>
+
+    <div class="routine fade-in">
+      <h3>☀️ Daytime Routine (Going Out)</h3>
+      <ul>
+        <li><strong>Cleanser:</strong> Start fresh with a mild face wash.</li>
+        <li><strong>Serum:</strong> Add Vitamin C serum for glow and sun protection.</li>
+        <li><strong>Moisturizer:</strong> Use a lightweight, SPF-based moisturizer.</li>
+        <li><strong>Sunscreen:</strong> Never skip — apply evenly on face and neck.</li>
+        <li><strong>Lip Tint:</strong> Add a natural tint for a radiant look.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Always reapply sunscreen every 3–4 hours outdoors.</li>
+      </ul>
+    </div>
+
+    <div class="routine fade-in">
+      <h3>🌇 Evening / Party Look</h3>
+      <ul>
+        <li><strong>Cleanser:</strong> Clean your face to remove daytime dust and oil.</li>
+        <li><strong>Primer:</strong> Smooth base for makeup.</li>
+        <li><strong>Foundation & Concealer:</strong> Blend gently for a flawless finish.</li>
+        <li><strong>Eye Makeup:</strong> Define your eyes with kajal, liner & mascara.</li>
+        <li><strong>Lipstick:</strong> Choose bold, confident shades by Elovya.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Dab highlighter lightly on cheekbones for that glow!</li>
+      </ul>
+    </div>
+
+    <div class="routine fade-in">
+      <h3>💖 Date Night Routine</h3>
+      <ul>
+        <li><strong>Exfoliate:</strong> Gently remove dead cells for smoother skin.</li>
+        <li><strong>Serum:</strong> Hydrating or brightening serum adds instant radiance.</li>
+        <li><strong>Makeup Base:</strong> Use BB cream or light foundation.</li>
+        <li><strong>Perfume:</strong> Spray on pulse points for long-lasting fragrance.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Confidence is your best glow — smile naturally!</li>
+      </ul>
+    </div>
+
+    <div class="routine fade-in">
+      <h3>🎉 Hanging Out with Friends</h3>
+      <ul>
+        <li><strong>Toner + Moisturizer:</strong> Quick refresh for your skin.</li>
+        <li><strong>Compact Powder:</strong> Reduce shine without heavy makeup.</li>
+        <li><strong>Gloss:</strong> Add shimmer for a fun, effortless vibe.</li>
+        <li><strong>Perfume:</strong> Keep it light and playful.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Go minimal — let your natural beauty shine through!</li>
+      </ul>
+    </div>
+
+    <div class="routine fade-in">
+      <h3>🌙 Bedtime Routine</h3>
+      <ul>
+        <li><strong>Makeup Remover:</strong> Never sleep with makeup on.</li>
+        <li><strong>Cleanser:</strong> Deep clean to clear pores.</li>
+        <li><strong>Night Cream:</strong> Apply evenly on face & neck.</li>
+        <li><strong>Eye Cream:</strong> Gently tap under eyes to reduce puffiness.</li>
+        <li class="tip">💡 <em>Elovya Tip:</em> Sleep 7–8 hours — beauty truly starts with rest.</li>
+      </ul>
+    </div>
+  </section>
+
   <script>
-    (function () {
-      const v = document.getElementById('bgVideo');
-      // Try programmatic play (some browsers require user gesture unless muted)
-      v.play().catch(() => {
-        // If still blocked, keep muted and try again (most mobiles allow muted autoplay)
-        v.muted = true;
-        v.play().catch(() => {
-          // if autoplay still blocked, do nothing — user can still see video and click play
-          // we avoid showing controls for a clean look
-        });
+    const fadeEls = document.querySelectorAll('.fade-in');
+    window.addEventListener('scroll', () => {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          el.classList.add('visible');
+        }
       });
-    })();
+    });
   </script>
 </body>
 </html>
