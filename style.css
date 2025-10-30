@@ -1,206 +1,101 @@
-/* ========= VARIABLES / PALETTES ========= */
-/* Picked palette: Soft Pastel Pink -> Peach for Elovya (best luxury-feminine balance) */
-:root{
-  --bg-dark: #070707;
-  --muted: #c7c7c7;
-  --text: #fff;
-  --accent: #f4b5c1;       /* soft pink heading */
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  --card-border: rgba(255,255,255,0.05);
-  --skincare-bg: linear-gradient(180deg, #fff0f2 0%, #fff6ee 100%); /* pastel pink -> peach */
-  --max-width: 1100px;
-  --radius: 14px;
+/* Reset defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Alternative palettes (uncomment to try):
--- Lavender -> cream:
--- --skincare-bg: linear-gradient(180deg,#f3e9fb 0%, #fbf6f9 100%);
-
--- Mint -> beige:
--- --skincare-bg: linear-gradient(180deg,#eafff2 0%, #fbf9f2 100%);
-
--- Pink -> rose-gold:
--- --skincare-bg: linear-gradient(180deg,#fff0f4 0%, #fff0e6 100%);
-*/
-
-/* ===== RESET / BASE ===== */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background:var(--bg-dark);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.5;
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  background-color: #fff;
 }
 
-/* ===== HERO / VIDEO ===== */
-.hero{
-  position:relative;
-  height:100vh;
-  width:100%;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background: #000; /* fallback if video fails */
+/* Background video container */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.hero-video{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
-  background:#000;
+.video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
-/* overlay minimal to avoid duplicate text */
-.hero-overlay{
-  z-index:2;
-  position:relative;
-  text-align:center;
-  width:100%;
-  max-width:var(--max-width);
-  padding:28px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  align-items:center;
-  justify-content:center;
-  pointer-events:auto;
+/* Overlay text styling */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
 }
 
-.brand{
-  font-weight:700;
-  letter-spacing:3px;
-  color:var(--text);
-  opacity:0.95;
-  font-size:1.05rem;
+.title {
+  font-size: 4rem;
+  letter-spacing: 6px;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
 }
 
-/* buttons */
-.btn{ border:none; cursor:pointer; text-decoration:none; display:inline-block; font-weight:600; }
-.linkedin{
-  background:#0077b5; color:#fff; padding:12px 26px; border-radius:28px; box-shadow:0 8px 24px rgba(0,0,0,0.35);
-}
-.cta{
-  background:transparent; border:1px solid rgba(255,255,255,0.06); padding:10px 18px; color:var(--muted); border-radius:20px;
-}
-
-/* small hover styles */
-.linkedin:hover{ transform:translateY(-3px) }
-.cta:hover{ transform:translateY(-3px); color:var(--text); }
-
-/* ===== MAIN CONTAINERS ===== */
-.container{ max-width:var(--max-width); margin:0 auto; padding:42px 20px; }
-
-/* hidden -> visible for sections */
-.section-hidden{ opacity:0; transform:translateY(24px); transition:all .9s cubic-bezier(.2,.9,.3,1); background:transparent; }
-.section-hidden.visible{ opacity:1; transform:translateY(0); }
-
-/* main heading */
-h2{ color:var(--accent); font-size:1.8rem; margin:6px 0 18px; text-align:left; }
-
-/* ===== CARDS GRID ===== */
-.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 15px;
+  letter-spacing: 4px;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeIn 2s ease 1s forwards;
 }
 
-/* individual card */
-.card{
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  padding:18px;
-  border-radius:var(--radius);
-  box-shadow:0 6px 20px rgba(0,0,0,0.5);
-  color:var(--text);
-  min-height:220px;
+/* Pink section */
+.routine {
+  background: linear-gradient(135deg, #ffd6e8, #ffe9f0);
+  text-align: center;
+  padding: 90px 25px;
+  opacity: 0;
+  animation: fadeInUp 1.5s ease 2s forwards;
 }
 
-/* card header */
-.card-title{ display:flex; align-items:center; gap:10px; margin-bottom:8px; }
-.card-title .icon{ font-size:1.4rem; line-height:1; }
-.card-title h3{ margin:0; color:#ffdfe6; font-size:1.15rem; }
-
-/* content */
-.lead{ color:var(--muted); margin:6px 0 10px; font-size:1rem; }
-.steps{ margin-left:18px; text-align:left; color:#fff; font-size:1rem; }
-.steps li{ margin-bottom:10px; }
-
-/* tip */
-.tip{ margin-top:10px; background:rgba(255,255,255,0.03); padding:10px; border-radius:8px; color:#ffdfe6; border-left:3px solid var(--accent); }
-
-/* fade reveal */
-.fade-item{ opacity:0; transform:translateY(22px); transition:all .9s cubic-bezier(.2,.9,.3,1); }
-.fade-item.visible{ opacity:1; transform:translateY(0); }
-
-/* ===== PRODUCTS AREA (pastel background & panels) ===== */
-.products{
-  padding:46px 20px;
-  margin-top:18px;
-  background: var(--skincare-bg);
-  border-top:1px solid rgba(0,0,0,0.06);
-  border-bottom:1px solid rgba(0,0,0,0.06);
-  color:#111;
-  border-radius:16px;
+.routine p {
+  font-size: 1.9rem;
+  color: #b03060;
+  font-weight: 500;
+  letter-spacing: 1px;
 }
 
-/* product panels grid */
-.product-panels{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(220px,1fr));
-  gap:18px;
-  margin-top:18px;
+/* Fade-in animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* single panel */
-.panel{
-  background:rgba(255,255,255,0.9);
-  padding:16px;
-  border-radius:12px;
-  color:#111;
-  border:1px solid rgba(0,0,0,0.06);
-  min-height:150px;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.panel.full{ grid-column:1 / -1; }
+/* Responsive design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.8rem;
+  }
 
-.panel-head{ display:flex; gap:10px; align-items:center; margin-bottom:8px; }
-.panel-head .icon{ font-size:1.25rem; }
+  .subtitle {
+    font-size: 1.2rem;
+  }
 
-.panel h3{ margin:0; color:#d65d8f; font-size:1.05rem; }
-.panel ul{ margin:0; padding-left:18px; line-height:1.6; font-size:0.98rem; }
-
-/* ===== FOOTER ===== */
-.site-footer{ text-align:center; padding:32px 18px; color: #d0c9c9; background:#060606; margin-top:28px; font-size:0.95rem; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width:800px){
-  .product-panels{ grid-template-columns: 1fr; }
-  h2{ font-size:1.6rem; }
-  .card{ min-height: auto; padding:16px; }
-  .panel{ padding:14px; }
+  .routine p {
+    font-size: 1.4rem;
+  }
 }
-
-/* safari tweak for consistent font rendering */
-@supports (-webkit-touch-callout: none) {
-  body{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-}
-
-/* ensure hero doesn't show duplicate large text if video contains it — make video darker overlay on top */
-.hero:before{
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.35));
-  z-index:1;
-  pointer-events:none;
-}
-.hero-overlay{ z-index:2; position:relative; }
