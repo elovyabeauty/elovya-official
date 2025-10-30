@@ -1,30 +1,590 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ELOVYA | Coming Soon</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Elovya Beauty — Coming Soon</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- BASE RESET ---------- */
+    :root{
+      --pink-50: #fff0f6;
+      --pink-100: #ffe6ef;
+      --accent: #b30059;
+      --muted: #6a0a3e;
+      --card-border: rgba(179,0,89,0.08);
+      --glass: rgba(255,255,255,0.9);
+      --max-w: 1150px;
+    }
+    *{box-sizing: border-box; margin:0; padding:0}
+    html,body{height:100%}
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: #fff;
+      color: #222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* ---------- HERO / VIDEO ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      background:#000;
+    }
+    /* subtle overlay so text is readable but not duplicate */
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.36));
+      z-index:1;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:24px;
+      color: #fff;
+      max-width:var(--max-w);
+    }
+    .brand{
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      letter-spacing:3px;
+      font-size:42px;
+      margin-bottom:6px;
+      opacity:0.98;
+      text-shadow: 0 6px 24px rgba(0,0,0,0.4);
+    }
+    .tagline{
+      font-size:16px;
+      letter-spacing:3px;
+      margin-bottom:18px;
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* CTA button */
+    .cta {
+      display:inline-block;
+      background: linear-gradient(90deg,#ffb6c1,#ffd6e8);
+      color:#6a0037;
+      border:none;
+      padding:12px 26px;
+      border-radius:28px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow: 0 8px 26px rgba(179,0,89,0.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+      margin-top:6px;
+    }
+    .cta:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(179,0,89,0.18); }
+
+    /* ---------- TIPS AREA (hidden initially) ---------- */
+    .tips-wrap{
+      max-width: var(--max-w);
+      margin: 28px auto;
+      padding: 18px;
+      width: calc(100% - 40px);
+    }
+
+    .options-row{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      margin: 12px 0 18px;
+      flex-wrap:wrap;
+    }
+    .option-btn{
+      background: #fff;
+      border: 1px solid var(--card-border);
+      padding:10px 18px;
+      border-radius:20px;
+      cursor:pointer;
+      color: var(--muted);
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      transition: transform .15s ease;
+    }
+    .option-btn:hover{ transform: translateY(-4px); }
+
+    /* the panel that holds the lists */
+    .panel {
+      display:none;
+      background: linear-gradient(180deg,var(--pink-100), #fff6f9 60%);
+      border-radius:14px;
+      padding:20px;
+      margin-top:16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border: 1px solid rgba(179,0,89,0.05);
+    }
+
+    .panel.visible{ display:block; }
+
+    .panel h2{
+      font-family: "Playfair Display", serif;
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      text-align:center;
+    }
+
+    /* ---------- LIST LAYOUT ---------- */
+    .list {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .list-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      background: rgba(255,255,255,0.95);
+      border-radius:12px;
+      padding:14px;
+      border:1px solid var(--card-border);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .list-item:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+
+    .icon-wrap{
+      min-width:54px;
+      height:54px;
+      border-radius:10px;
+      background: linear-gradient(180deg, #fff, #fff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .item-title{
+      font-weight:600;
+      color:var(--accent);
+      font-size:1rem;
+      margin-bottom:6px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .item-desc{
+      color:#4b004b;
+      font-size:0.95rem;
+      line-height:1.5;
+    }
+
+    .meta{
+      margin-top:8px;
+      font-size:0.88rem;
+      color:#6a0a3e;
+      font-weight:600;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width:960px){
+      .brand{ font-size:34px; }
+    }
+    @media (max-width:680px){
+      .brand{ font-size:28px; }
+      .cta{ padding:10px 18px; font-size:0.95rem; }
+      .list-item{ padding:12px; gap:10px; }
+      .icon-wrap{ min-width:44px; height:44px; }
+    }
+
+    /* ---------- SVG ICON COLORS (thin stroke) ---------- */
+    svg.icon { width:28px; height:28px; stroke: #b30059; fill: none; stroke-width:1.5; }
+  </style>
 </head>
 <body>
-  <!-- Video Background -->
-  <div class="video-container">
-    <video autoplay muted loop playsinline>
-      <source src="videos/launch.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
 
-    <!-- Overlay Text -->
-    <div class="overlay">
-      <h1 class="title fade-in">ELOVYA</h1>
-      <p class="subtitle fade-in-delay">COMING SOON</p>
+  <!-- HERO -->
+  <header class="hero" role="banner">
+    <video autoplay muted loop playsinline src="videos/launch.mp4" aria-label="Launching soon video"></video>
+
+    <div class="hero-content" role="region" aria-label="Launch header">
+      <div class="brand">ELOVYA BEAUTY</div>
+      <div class="tagline">COMING SOON — STAY TUNED</div>
+      <button class="cta" id="openTips">🌸 Click Here for Skincare Tips</button>
     </div>
-  </div>
+  </header>
 
-  <!-- Pink Section -->
-  <section class="routine fade-in-section">
-    <p>🌸 Build Your Perfect Skincare & Beauty Routine</p>
-  </section>
+  <!-- TIPS AREA (hidden until CTA click) -->
+  <div class="tips-wrap" id="tipsWrap" aria-live="polite" style="display:none;">
+    <div class="options-row">
+      <button class="option-btn" data-target="panelRoutine">💧 Routine Style</button>
+      <button class="option-btn" data-target="panelWhen">⏰ When to Use</button>
+    </div>
+
+    <!-- Routine Style Panel -->
+    <div id="panelRoutine" class="panel" aria-hidden="true">
+      <h2>💧 Routine Style — Morning → Night</h2>
+
+      <div class="list" id="routineList">
+        <!-- Morning -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <!-- cleanser-like SVG (used for cleanser/serum/moisturizer icons visual consistency) -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3c.6 1.2 2 2.8 4 4 1.4 0 3 1.6 3 3.6C19 13.8 15.6 18 12 21 8.4 18 5 13.8 5 10.6 5 8.6 6.6 7 8 7c2-1.2 3.4-2.8 4-4z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="item-title">🌅 Morning Routine — Cleanse & Protect</div>
+            <div class="item-desc">
+              Cleanse with a gentle cleanser, apply toner, vitamin-C serum, moisturizer, and finish with a broad-spectrum sunscreen (SPF 30–50).
+            </div>
+            <div class="meta">How: Massage cleanser 30s → serum 2–3 drops → sunscreen 15 mins before going out.</div>
+          </div>
+        </div>
+
+        <!-- Afternoon touch-up -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 12c0 4.4 4 8 8 8s8-3.6 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">☀️ Afternoon Touch-up</div>
+            <div class="item-desc">Use a hydrating facial mist or blotting paper. Reapply sunscreen when outdoors. Light lip balm for hydration.</div>
+            <div class="meta">How: Mist 20–30 cm away; blot excess oil gently.</div>
+          </div>
+        </div>
+
+        <!-- Evening -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">🌇 Evening Routine — Remove & Repair</div>
+            <div class="item-desc">Double cleanse (oil or micellar remover then gentle cleanser), then toner, night serum, moisturizer, and under-eye cream.</div>
+            <div class="meta">How: Use oil remover first for long-wear makeup; follow by foam/gel cleanser.</div>
+          </div>
+        </div>
+
+        <!-- Night -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v6l4 4-4 4v6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">🌙 Night Repair</div>
+            <div class="item-desc">Retinol or repairing serums (if used) followed by a rich night cream and sleeping mask as needed.</div>
+            <div class="meta">How: Use retinol at night only; start 2–3x/week and increase slowly.</div>
+          </div>
+        </div>
+
+        <!-- Date Night -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-6-4.6-8-8c2-3.4 8-8 8-8s6 4.6 8 8c-2 3.4-8 8-8 8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">💖 Date Night</div>
+            <div class="item-desc">Prep with illuminating serum, light foundation, soft blush, highlighter on cheekbones, lipstick/gloss and a subtle perfume.</div>
+            <div class="meta">How: Focus on one feature (lips or eyes) for a balanced romantic look.</div>
+          </div>
+        </div>
+
+        <!-- Hangout -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a9 9 0 1 0 0 18 9 9 0 0 0 0-18z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">🎉 Hangout / Casual</div>
+            <div class="item-desc">BB cream or light foundation, mascara, lip tint, and a dewy highlighter. Keep it natural & fresh.</div>
+            <div class="meta">How: Build light layers, use concealer only where needed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- When to Use Panel -->
+    <div id="panelWhen" class="panel" aria-hidden="true">
+      <h2>⏰ When to Use — Product Guide & How to Apply</h2>
+
+      <div class="list">
+
+        <!-- Cleanser -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <!-- cleanser icon -->
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c.6 1.2 2 2.8 4 4 1.4 0 3 1.6 3 3.6C19 13.8 15.6 18 12 21 8.4 18 5 13.8 5 10.6 5 8.6 6.6 7 8 7c2-1.2 3.4-2.8 4-4z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Cleanser</div>
+            <div class="item-desc">Use morning & night. Wet face, apply a nickel-sized amount, massage gently for 30–60s, rinse with lukewarm water.</div>
+            <div class="meta">Best for: All skin types (choose formula accordingly)</div>
+          </div>
+        </div>
+
+        <!-- Toner -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Toner</div>
+            <div class="item-desc">After cleansing, apply with cotton pad or pat using palms to restore pH and prep skin for serums.</div>
+            <div class="meta">Best for: balancing & soothing</div>
+          </div>
+        </div>
+
+        <!-- Serum -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <!-- reuse cleanser-like svg for serum/gel visual consistency -->
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3c.6 1.2 2 2.8 4 4 1.4 0 3 1.6 3 3.6C19 13.8 15.6 18 12 21 8.4 18 5 13.8 5 10.6 5 8.6 6.6 7 8 7c2-1.2 3.4-2.8 4-4z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Serum (Vitamin C / Hyaluronic / Retinol)</div>
+            <div class="item-desc">Use 2–3 drops after toner. Vitamin C in morning, hyaluronic any time, retinol at night (start slow).</div>
+            <div class="meta">How: Press gently with fingertips until absorbed.</div>
+          </div>
+        </div>
+
+        <!-- Moisturizer -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 12h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Moisturizer</div>
+            <div class="item-desc">Apply after serum. Massage upward on face & neck to lock in hydration.</div>
+            <div class="meta">Use morning & night; choose light gel for oily skin.</div>
+          </div>
+        </div>
+
+        <!-- Sunscreen -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Sunscreen (SPF)</div>
+            <div class="item-desc">Apply every morning 15–20 minutes before sun exposure. Reapply every 2–3 hours if outdoors.</div>
+            <div class="meta">How: Use a sufficient amount (about a fingertip for face & neck).</div>
+          </div>
+        </div>
+
+        <!-- Primer -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Primer</div>
+            <div class="item-desc">Apply after moisturizer to smooth texture and increase makeup longevity.</div>
+            <div class="meta">Perfect for: photo-ready or long-wear looks.</div>
+          </div>
+        </div>
+
+        <!-- Foundation -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2c1.7 0 3 1.3 3 3v14c0 1.7-1.3 3-3 3s-3-1.3-3-3V5c0-1.7 1.3-3 3-3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Foundation / BB Cream</div>
+            <div class="item-desc">Apply with brush or damp sponge for even coverage. Blend toward jawline for natural finish.</div>
+            <div class="meta">How: Build thin layers, set with powder if needed.</div>
+          </div>
+        </div>
+
+        <!-- Concealer -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Concealer</div>
+            <div class="item-desc">Dab under eyes or on blemishes; blend softly with sponge or fingertip for seamless coverage.</div>
+            <div class="meta">How: Use slightly lighter shade for brightening under eyes.</div>
+          </div>
+        </div>
+
+        <!-- Eyeshadow -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Eyeshadow Palette</div>
+            <div class="item-desc">Use transition shade in crease, lid shade on center, deepen outer corner for dimension.</div>
+            <div class="meta">How: Blend well to avoid harsh lines.</div>
+          </div>
+        </div>
+
+        <!-- Eyeliner & Kajal -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M2 12h20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Eyeliner / Kajal</div>
+            <div class="item-desc">Apply along lash line for definition. Smudge slightly for a softer look or keep sharp for drama.</div>
+            <div class="meta">How: Tightline for fuller lashes; waterline for bold looks.</div>
+          </div>
+        </div>
+
+        <!-- Mascara -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M2 12c3-6 10-9 18-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Mascara</div>
+            <div class="item-desc">Wiggle at the base of lashes and sweep upward to add volume and length.</div>
+            <div class="meta">How: Apply 1–3 coats depending on desired volume; use waterproof for long-wear.</div>
+          </div>
+        </div>
+
+        <!-- Brow Pencil -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 12c4-8 14-9 18 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Brow Pencil / Gel</div>
+            <div class="item-desc">Fill sparse areas with short strokes; set with gel for hold and texture.</div>
+            <div class="meta">How: Match color to hair for natural look.</div>
+          </div>
+        </div>
+
+        <!-- Blush & Highlighter -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Blush & Highlighter</div>
+            <div class="item-desc">Apply blush to apples of cheeks. Lightly dust highlighter on cheekbones, nose bridge, and cupid’s bow.</div>
+            <div class="meta">How: Blend seamlessly for natural glow.</div>
+          </div>
+        </div>
+
+        <!-- Lip products -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M2 12s2-6 10-6 10 6 10 6-2 6-10 6S2 12 2 12z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Lip Balm / Lipstick / Lip Gloss</div>
+            <div class="item-desc">Exfoliate lips weekly. Use balm as base, apply lipstick from center outward, top with gloss if needed.</div>
+            <div class="meta">How: Use lip liner for precision and longer wear.</div>
+          </div>
+        </div>
+
+        <!-- Setting Spray -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Setting Spray</div>
+            <div class="item-desc">Mist over finished makeup from 20–30cm away to lock the look and reduce powdery finish.</div>
+            <div class="meta">How: 2–3 spritzes for full face.</div>
+          </div>
+        </div>
+
+        <!-- Face Mask -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Face Mask (Weekly)</div>
+            <div class="item-desc">Use hydrating or clarifying masks 1–2x/week depending on skin needs. Follow instructions on product.</div>
+            <div class="meta">How: Use after cleansing and before serum/moisturizer.</div>
+          </div>
+        </div>
+
+        <!-- Nail care -->
+        <div class="list-item fade-target">
+          <div class="icon-wrap">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="item-title">Nail Care</div>
+            <div class="item-desc">Trim, file, and hydrate cuticles. Apply base coat, color coats, then top coat for shine and durability.</div>
+            <div class="meta">How: Allow nails to dry between coats.</div>
+          </div>
+        </div>
+
+      </div> <!-- end list -->
+    </div> <!-- end panelWhen -->
+
+  </div> <!-- end tipsWrap -->
+
+<script>
+  // show tips area & scroll to it
+  const openBtn = document.getElementById('openTips');
+  const tipsWrap = document.getElementById('tipsWrap');
+  openBtn.addEventListener('click', () => {
+    if (!tipsWrap.style.display || tipsWrap.style.display === 'none') {
+      tipsWrap.style.display = 'block';
+      // scroll to it smoothly a touch below hero
+      setTimeout(()=> {
+        tipsWrap.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 150);
+    } else {
+      // collapse if already open
+      tipsWrap.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // option buttons open panels
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const targetId = btn.getAttribute('data-target');
+      document.querySelectorAll('.panel').forEach(p => {
+        if (p.id === targetId) {
+          p.classList.toggle('visible');
+          // reveal scroll to the panel
+          if (p.classList.contains('visible')) p.scrollIntoView({behavior:'smooth', block:'start'});
+        } else {
+          p.classList.remove('visible');
+        }
+      });
+    });
+  });
+
+  // simple fade-in on scroll for .fade-target
+  const fadeTargets = document.querySelectorAll('.fade-target');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  fadeTargets.forEach(el => obs.observe(el));
+
+  // make SVG icons visible style (add classname visible)
+  // Keep JS light — CSS handles hover & layout.
+</script>
 </body>
 </html>
