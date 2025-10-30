@@ -1,193 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Elovya Beauty — Launching Soon</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELOVYA | Coming Soon</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- HERO / VIDEO -->
-  <header class="hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="launch.mp4" type="video/mp4" />
-      <!-- fallback image (optional) -->
+  <!-- Video Background -->
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="videos/launch.mp4" type="video/mp4">
+      Your browser does not support the video tag.
     </video>
 
-    <!-- Overlay kept minimal to avoid duplicate text if video already says "LAUNCHING SOON" -->
-    <div class="hero-overlay">
-      <div class="brand">ELOVYA BEAUTY</div>
-
-      <a class="btn linkedin" href="https://www.linkedin.com/in/elovyabeauty?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer">
-        Follow us on LinkedIn
-      </a>
-
-      <button id="goto-skincare" class="btn cta">Click to learn skincare tips ↓</button>
+    <!-- Overlay Text -->
+    <div class="overlay">
+      <h1 class="title fade-in">ELOVYA</h1>
+      <p class="subtitle fade-in-delay">COMING SOON</p>
     </div>
-  </header>
+  </div>
 
-  <!-- SKINCARE / ROUTINES (target of CTA) -->
-  <main>
-    <section id="skincare" class="skincare section-hidden container">
-      <h2>🌸 Build Your Perfect Skincare & Beauty Routine</h2>
-
-      <!-- Cards grid -->
-      <div class="cards">
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">🌅</span><h3>Morning</h3></div>
-          <p class="lead">Fresh & protected for the day.</p>
-          <ol class="steps">
-            <li><strong>Cleanser:</strong> Massage on damp skin 20–30s, rinse.</li>
-            <li><strong>Toner:</strong> Pat to rebalance skin.</li>
-            <li><strong>Moisturizer:</strong> Apply while skin slightly damp.</li>
-            <li><strong>Sunscreen:</strong> Apply broadly — face, neck, ears.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Wait 1–2 minutes between serum and sunscreen.</p>
-        </article>
-
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">☀️</span><h3>Day / Going Out</h3></div>
-          <p class="lead">Light coverage + sun protection.</p>
-          <ol class="steps">
-            <li>Light cleanser + hydrating serum (vitamin C).</li>
-            <li>Moisturizer + SPF 30–50.</li>
-            <li>BB cream / light foundation and lip tint.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Reapply sunscreen outdoors every 2–3 hours.</p>
-        </article>
-
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">🌇</span><h3>Evening / Party</h3></div>
-          <p class="lead">Glam for the evening.</p>
-          <ol class="steps">
-            <li>Double cleanse (oil → cleanser).</li>
-            <li>Primer, foundation & concealer.</li>
-            <li>Eye makeup + bold lips; finish with setting spray.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Use a damp sponge for an airbrushed finish.</p>
-        </article>
-
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">💞</span><h3>Date Night</h3></div>
-          <p class="lead">Soft, romantic & memorable.</p>
-          <ol class="steps">
-            <li>Gentle exfoliation 1–2× weekly (if needed).</li>
-            <li>Illuminating serum + light foundation & blush.</li>
-            <li>Perfume on pulse points.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Focus on one feature — lips or eyes.</p>
-        </article>
-
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">🎉</span><h3>Party</h3></div>
-          <p class="lead">Long-wear & camera-ready.</p>
-          <ol class="steps">
-            <li>Long-wear primer + setting powder.</li>
-            <li>Layer mascara or falsies for impact.</li>
-            <li>Seal lipstick with liner for longevity.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Blot between layers for longer wear.</p>
-        </article>
-
-        <article class="card fade-item">
-          <div class="card-title"><span class="icon">🌙</span><h3>Bedtime</h3></div>
-          <p class="lead">Repair & hydrate overnight.</p>
-          <ol class="steps">
-            <li>Remove makeup completely (micellar/oil remover).</li>
-            <li>Cleanse, then apply night cream & eye cream.</li>
-            <li>Lip mask if desired.</li>
-          </ol>
-          <p class="tip">💡 Elovya Tip: Sleep on a silk pillowcase to reduce friction.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- PRODUCTS GUIDE -->
-    <section id="products" class="products section-hidden container">
-      <h2>💄 Cosmetic Essentials & How to Use Them</h2>
-
-      <div class="product-panels">
-        <div class="panel">
-          <div class="panel-head"><span class="icon">😊</span><h3>Face</h3></div>
-          <ul>
-            <li><strong>Primer</strong> — thin layer before foundation.</li>
-            <li><strong>Foundation</strong> — blend with sponge or brush.</li>
-            <li><strong>Concealer</strong> — dab & blend under eyes or on spots.</li>
-            <li><strong>Compact/Powder</strong> — set T-zone lightly.</li>
-            <li><strong>Blush & Highlighter</strong> — apples & cheekbones.</li>
-            <li><strong>Setting Spray</strong> — mist to lock finish.</li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head"><span class="icon">👀</span><h3>Eyes</h3></div>
-          <ul>
-            <li><strong>Eyeliner</strong> — draw close to lashes for definition.</li>
-            <li><strong>Mascara</strong> — wiggle at roots and pull upward.</li>
-            <li><strong>Eyeshadow</strong> — blend transition → lid → outer corner.</li>
-            <li><strong>Brow Pencil</strong> — short strokes to mimic hair.</li>
-            <li><strong>Under-eye</strong> <span class="icon">👁️</span> — apply eye cream with ring finger, pat gently.</li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head"><span class="icon">💋</span><h3>Lips</h3></div>
-          <ul>
-            <li><strong>Lip Balm</strong> — hydrate pre-application.</li>
-            <li><strong>Lip Liner</strong> — define shape to prevent feathering.</li>
-            <li><strong>Lipstick</strong> — apply center→edges, blot for longevity.</li>
-            <li><strong>Gloss</strong> — add shine on top.</li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <div class="panel-head"><span class="icon">💅</span><h3>Nails</h3></div>
-          <ul>
-            <li><strong>Nail Polish</strong> — thin layers, 2 coats for opacity.</li>
-            <li><strong>Remover</strong> — gentle wipe; rehydrate cuticles after.</li>
-            <li><strong>Cuticle Oil</strong> — massage daily for healthy nails.</li>
-          </ul>
-        </div>
-
-        <div class="panel full">
-          <div class="panel-head"><span class="icon">🧴</span><h3>Skincare (Core)</h3></div>
-          <ul>
-            <li><strong>Cleanser</strong> — morning & night to remove buildup.</li>
-            <li><strong>Toner</strong> — balance pH and prep skin.</li>
-            <li><strong>Serum</strong> — 2–3 drops for targeted treatment.</li>
-            <li><strong>Moisturizer</strong> — lock hydration after serum.</li>
-            <li><strong>Sunscreen</strong> — daily application & reapply outdoors.</li>
-            <li><strong>Face Mask</strong> — weekly deep care depending on type.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© 2025 Elovya Beauty | All rights reserved</p>
-  </footer>
-
-  <!-- SCRIPTS -->
-  <script>
-    // smooth scroll CTA
-    document.getElementById('goto-skincare').addEventListener('click', function() {
-      document.getElementById('skincare').scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-
-    // IntersectionObserver fade-in
-    const fadeTargets = document.querySelectorAll('.fade-item, .section-hidden');
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    fadeTargets.forEach(t => io.observe(t));
-  </script>
+  <!-- Pink Section -->
+  <section class="routine fade-in-section">
+    <p>🌸 Build Your Perfect Skincare & Beauty Routine</p>
+  </section>
 </body>
 </html>
